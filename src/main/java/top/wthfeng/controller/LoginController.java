@@ -1,9 +1,12 @@
 package top.wthfeng.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 /**
  * 登录 控制器
@@ -13,11 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class LoginController {
-	@RequestMapping(value="/user/login",method=RequestMethod.POST)
+	@RequestMapping(value="/user/login",method=RequestMethod.GET)
 	@ResponseBody
-	private String login(Integer id,String username,String password){
+	public String login(Integer id, String username,String password){
 
 		return "success";
+		
+	}
+	
+	@RequestMapping(value="/user/login2",method=RequestMethod.GET)
+	public String login2(){
+		return "index";
 		
 	}
 	
