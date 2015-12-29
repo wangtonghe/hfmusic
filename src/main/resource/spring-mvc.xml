@@ -64,10 +64,18 @@
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 	<mvc:interceptors>
+
+     <!--判断用户访问权限-->
 	<mvc:interceptor>
-	 <mvc:mapping path="/**"/>
-	 <bean class="top.wthfeng.interceptor.AccessUserInterceptor" /> 
+		<mvc:mapping path="/**"/>
+	 	<bean class="top.wthfeng.interceptor.AccessUserInterceptor" />
 	</mvc:interceptor>
+
+
+
+
+
+
 	</mvc:interceptors>
 	
 	<!-- <mvc:interceptors>
