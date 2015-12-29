@@ -12,8 +12,9 @@ public interface UserService {
 	 * 用户登录
 	 * @param username
 	 * @param password
+	 * @return 0登录成功，1账号错误，2密码错误，3其他错误
 	 */
-	public void login(String username,String password);
+	public Integer  login(String username,String password);
 	
 	/**
 	 * 用户注册

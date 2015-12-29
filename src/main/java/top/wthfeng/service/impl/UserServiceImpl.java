@@ -1,11 +1,12 @@
 package top.wthfeng.service.impl;
 
-import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import top.wthfeng.dao.UserDAO;
-import top.wthfeng.model.User;
 import top.wthfeng.service.UserService;
 
 /**
@@ -15,9 +16,20 @@ import top.wthfeng.service.UserService;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService{
+	private int LOGINFLAG;
+	
+	@Autowired
+	private UserDAO userDAO;
 
+	
 	@Override
-	public void login(String username, String password) {
+	public Integer login(String username, String password) {
+		
+			
+		/*String password = userDAO.selectByName(username);*/
+		return 0;
+			
+		
 		
 	}
 

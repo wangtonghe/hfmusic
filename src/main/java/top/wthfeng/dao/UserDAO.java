@@ -1,5 +1,7 @@
 package top.wthfeng.dao;
 
+import java.util.Map;
+
 
 /**
  * @author wangtonghe
@@ -20,7 +22,18 @@ public interface UserDAO {
 	 */
 	public void updateUser();
 	
+	/**
+	 * 查询是否有此用户
+	 * @param username 用户名
+	 * @return 密码
+	 */
+	public Map<String,Object> selectByName(String username);
 	
+	/**
+	 * 更新用户令牌
+	 * @param id
+	 */
+	public void updateAccessToken(Integer id);
 	
 
 }
