@@ -20,7 +20,7 @@ public interface UserDAO {
 	 */
 	public void updateUser();
 	
-	public 
+	
 	
 
 }
