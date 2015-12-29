@@ -49,7 +49,7 @@
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/WEB_INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
@@ -63,7 +63,10 @@
 		<!-- 内存中的最大值 -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
+	
+	<!-- Spring mvc拦截器 -->
 	<mvc:interceptors>
+<<<<<<< HEAD
 
      <!--判断用户访问权限-->
 	<mvc:interceptor>
@@ -76,92 +79,18 @@
 
 
 
+=======
+	     <!-- 用户登录验证 -->
+		<mvc:interceptor>
+		 <mvc:mapping path="/**"/>
+		 <bean class="top.wthfeng.interceptor.AccessUserInterceptor" /> 
+		</mvc:interceptor>	
+>>>>>>> 6a6f429dae7c325fcc6eb48463d007c61b9330a7
 	</mvc:interceptors>
 	
-	<!-- <mvc:interceptors>
-		记录访问日志
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.pumpkin.carriage.interceptor.AccessLogInterceptor"></bean>
-		</mvc:interceptor>
-		
-		判断人员是否登录
-		<mvc:interceptor>
-			<mvc:mapping path="/login"/>
-			<bean class="com.pumpkin.carriage.interceptor.LoginInterceptor"></bean>
-		</mvc:interceptor>
-
-		只有已登录用户才可以访问
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			
-			<bean class="com.pumpkin.carriage.interceptor.AccessUserInterceptor">
-				<property name="excludes">
-					<list>
-						<value>/charge/alipay/refund/confirm</value>
-						<value>/admin/focuscontent/getContent</value>
-						<value>/admin/focuscontent/list</value>
-						<value>/admin/focuscontent/add</value>
-						<value>/admin/focuscontent/delete</value>
-						<value>/admin/focuscontent/depublish</value>
-						<value>/admin/focuscontent/publish</value>
-						
-						<value>/admin/dresser/addDresser</value>
-						<value>/admin/dresser/listCosmeticsClass</value>
-						<value>/admin/dresser/listCosmeticsBrand</value>
-						<value>/admin/dresser/addWork</value>
-						
-						<value>/loginOut</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
-		
-		判断人员访问资源的权限 
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.pumpkin.carriage.interceptor.ResourceAuthorityInterceptor">
-				<property name="excludes">
-					<list>
-						<value>/charge/alipay/refund/confirm</value>
-						<value>/admin/focuscontent/getContent</value>
-						<value>/admin/focuscontent/list</value>
-						<value>/admin/focuscontent/add</value>
-						<value>/admin/focuscontent/delete</value>
-						<value>/admin/focuscontent/depublish</value>
-						<value>/admin/focuscontent/publish</value>
-						
-						<value>/admin/dresser/addDresser</value>
-						<value>/admin/dresser/listCosmeticsClass</value>
-					    <value>/admin/dresser/listCosmeticsBrand</value>
-					    <value>/admin/dresser/addWork</value>
-						<value>/loginOut</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors> -->
-
-	<!-- 异常处理，返回json结果 -->
-	<!-- <bean id="exceptionResolver" class="com.pumpkin.carriage.resolver.ExceptionResolver"></bean> -->
+	
 	
 
-	<!-- 配置信息读取bean，可以注入到需要读取配置信息的对象中 -->
-	<!-- <bean id="configProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="location"
-			value="classpath:spring/config/configuration.properties" />
-	</bean> -->
 	
-		<!-- <bean id="propertyConfigurerController"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:jdbc.properties" />
-		<property name="locations">
-			<list>
-				<value>classpath:jdbc.properties</value>
-				<value>classpath:spring/config/configuration.properties</value>
-			</list>
-		</property>
-	</bean> -->
 
 </beans>
