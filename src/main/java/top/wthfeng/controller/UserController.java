@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import top.wthfeng.po.User;
+import top.wthfeng.model.User;
 import top.wthfeng.service.UserService;
 
 /**
@@ -22,18 +22,7 @@ import top.wthfeng.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	@Resource
-	private UserService userService; //按名称装配
 	
-	@RequestMapping(value="/findById",method=RequestMethod.GET)
-	@ResponseBody
-	public Map<String,Object> findById(int id){
-		Map<String,Object> result = new HashMap<>();
-		User user =userService.selectById(id);
-		result.put("code", 0);
-		result.put("data", user);
-		return result;		
-	}
 	
 
 }

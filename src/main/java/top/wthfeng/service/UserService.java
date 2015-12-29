@@ -1,6 +1,5 @@
 package top.wthfeng.service;
 
-import top.wthfeng.po.User;
 
 /**
  * @author wangtonghe
@@ -8,16 +7,19 @@ import top.wthfeng.po.User;
  * @time 2015年11月25日 下午2:58:10
  */
 public interface UserService {
+	
 	/**
-	 * 添加用户
-	 * @param user
+	 * 用户登录
+	 * @param username
+	 * @param password
 	 */
-	public void insert(User user);
+	public void login(String username,String password);
+	
 	/**
-	 * 根据id查询用户
-	 * @param id
-	 * @return
+	 * 用户注册
+	 * @param username
+	 * @param password
 	 */
-	public User selectById(long id);
-
+	public void register(String username,String password);
+	
 }

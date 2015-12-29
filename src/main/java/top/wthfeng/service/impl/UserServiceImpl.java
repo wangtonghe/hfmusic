@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import top.wthfeng.dao.UserDAO;
-import top.wthfeng.po.User;
+import top.wthfeng.model.User;
 import top.wthfeng.service.UserService;
 
 /**
@@ -15,16 +15,17 @@ import top.wthfeng.service.UserService;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService{
-	
-	@Resource
-	private UserDAO userDAO; //@Resource按名称进行装配
-	
-	public void insert(User user){
-		userDAO.insert(user);
+
+	@Override
+	public void login(String username, String password) {
+		
 	}
 
-	public User selectById(long id) {
-		return userDAO.selectById(id);
+	@Override
+	public void register(String username, String password) {
+		
 	}
+	
+	
 
 }

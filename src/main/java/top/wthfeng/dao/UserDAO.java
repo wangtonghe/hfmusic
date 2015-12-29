@@ -1,6 +1,5 @@
 package top.wthfeng.dao;
 
-import top.wthfeng.po.User;
 
 /**
  * @author wangtonghe
@@ -8,11 +7,20 @@ import top.wthfeng.po.User;
  * @time 2015年11月25日 下午2:59:10
  */
 public interface UserDAO {
+	
 	/**
 	 * 添加用户
-	 * @param user
+	 * @param username
+	 * @param password
 	 */
-	public void  insert(User user);
-	public User selectById(Long id);
+	public void insertUser(String username,String password);
+	
+	/**
+	 * 更新用户信息
+	 */
+	public void updateUser();
+	
+	public 
+	
 
 }
