@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
@@ -66,11 +66,23 @@
 	
 	<!-- Spring mvc拦截器 -->
 	<mvc:interceptors>
-	     <!-- 用户登录验证 -->
-		<mvc:interceptor>
-		 <mvc:mapping path="/**"/>
-		 <bean class="top.wthfeng.interceptor.AccessUserInterceptor" /> 
-		</mvc:interceptor>	
+
+
+     <!--判断用户访问权限-->
+	<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<mvc:exclude-mapping path="/user/login" />
+		<mvc:exclude-mapping path="/user/register"/>
+	 	<bean class="top.wthfeng.interceptor.AccessUserInterceptor" />
+	</mvc:interceptor>
+
+
+
+
+
+
+
+
 	</mvc:interceptors>
 	
 	
