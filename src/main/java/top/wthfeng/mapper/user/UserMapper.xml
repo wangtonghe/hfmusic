@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="top.wthfeng.dao.user.UserDAO" >
+
+    <!--注册用户-->
+    <insert id="insertUser" parameterType="top.wthfeng.model.param.RegisterUserParam" >
+        <selectKey order="AFTER" keyColumn="id" keyProperty="userId" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into `user`(username,password,accessToken,starNum,headPortrait,lastLoginTime)
+        values(#{username},#{password},#{accessToken},#{starNum},#{headPortrait},#{lastLoginTime})
+    </insert>
+
+
+
+    <!--根据用户名查找用户是否存在-->
+    <select id="selectByUserName" parameterType="java.lang.String" resultType="top.wthfeng.model.user.UserInfo">
+        SELECT  id AS userId, password,username,nickName,sex,starNum,headPortrait as photo
+        from `user`
+        WHERE username = #{username}
+    </select>
+
+    <update id="updateTokenAndTime" parameterType="java.util.Map">
+        UPDATE `user`
+         set accessToken = #{accessToken},lastLoginTime =#{loginTime}
+       WHERE  id = #{id}
+    </update>
+
+    <select id="checkAccessToken" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT accessToken from  `user`
+        WHERE accessToken=#{accessToken}
+    </select>
+
+</mapper>

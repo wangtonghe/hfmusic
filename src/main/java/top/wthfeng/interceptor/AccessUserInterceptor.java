@@ -1,10 +1,12 @@
 package top.wthfeng.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import top.wthfeng.service.user.UserService;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户授权拦截器。 若用户未登录，则不能进行操作
@@ -14,11 +16,14 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class AccessUserInterceptor extends HandlerInterceptorAdapter{
 
+	@Resource
+	private UserService  userService;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		return true;
-		
+		String accessToken = request.getParameter("accessToken");
+		return userService.checkAccessToken(accessToken);
 	}
 
 	@Override

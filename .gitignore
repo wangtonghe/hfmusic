@@ -1,1 +1,11 @@
-/target/
+*.class
+*.iml
+.*
+*.jar
+.settings/*
+.DS_Store
+target
+bin
+build
+#可以提交.gitignore文件
+!.gitignore
