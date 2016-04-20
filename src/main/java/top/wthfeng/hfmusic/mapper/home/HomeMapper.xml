@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.wthfeng.hfmusic.dao.home.HomeDAO" >
+
+    <!--获取热门歌单-->
+    <select id="HotSpecial"
+            resultType="top.wthfeng.hfmusic.model.view.ViewHotForm">
+        SELECT f.id as formId,f.formName name,f.cover,u.nickName creator,
+        f.issystem as isSystem,
+        ((SELECT count(ucf.id) FROM user_collcetion_form ucf where ucf.formId=f.id)+f.likenum)as hot
+         from form f
+        left JOIN "user" u on f.userId=u.id
+        limit 0,8
+    </select>
+
+    <!--获取本月热门歌曲-->
+    <select id="monthlyHot" parameterType="java.lang.String" resultType="top.wthfeng.hfmusic.model.view.ViewHomeMusic">
+        SELECT * from
+    </select>
+</mapper>
