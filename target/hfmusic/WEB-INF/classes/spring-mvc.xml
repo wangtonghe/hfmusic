@@ -31,6 +31,7 @@
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/user/login" />
 			<mvc:exclude-mapping path="/user/register"/>
+			<mvc:exclude-mapping path="/home/*"/>
 			<bean class="top.wthfeng.hfmusic.interceptor.AccessUserInterceptor" />
 		</mvc:interceptor>
 

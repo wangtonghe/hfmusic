@@ -45,6 +45,7 @@ public class UserLoginController {
             result.put("code", 1);
             result.put("data", "抱歉，用户名不存在");
         } else if (!user.getPassword().equals(MD5Util.string2MD5(password))) {
+            String pwd =MD5Util.string2MD5(password);
             result.put("code", 1);
             result.put("data", "密码不正确，请重试......");
         } else {
@@ -89,14 +90,19 @@ public class UserLoginController {
             param.setStarNum(DEFAULTSTARNUM);
             param.setPassword(MD5Util.string2MD5(password));
             param.setUsername(username);
-            userService.register(param);
-            ViewUserLogin data = new ViewUserLogin();
-            data.setAccessToken(param.getAccessToken());
-            data.setHeadPortrait(param.getHeadPortrait());
-            data.setStarNum(param.getStarNum());
-            data.setUsername(param.getUsername());
-            result.put("code", 0);
-            result.put("data", data);
+            int value =userService.register(param);
+            if(value==-1) {
+                result.put("code", -1);
+                result.put("data", "该账号已存在！");
+            }else {
+                ViewUserLogin data = new ViewUserLogin();
+                data.setAccessToken(param.getAccessToken());
+                data.setHeadPortrait(param.getHeadPortrait());
+                data.setStarNum(param.getStarNum());
+                data.setUsername(param.getUsername());
+                result.put("code", 0);
+                result.put("data", data);
+            }
         }
         return result;
     }

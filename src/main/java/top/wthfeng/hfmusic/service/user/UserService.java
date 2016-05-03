@@ -24,7 +24,7 @@ public interface UserService {
 	 * 用户注册
 	 * @param param
 	 */
-	public void register(RegisterUserParam param) throws Exception;
+	public Integer register(RegisterUserParam param) throws Exception;
 
 	/**
 	 * 更新用户令牌及登录时间

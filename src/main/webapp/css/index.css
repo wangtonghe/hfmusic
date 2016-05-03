@@ -1,0 +1,18 @@
+.carousel-inner > .active { /*如果是高亮图片，则左对齐*/
+    left: 300px;
+}
+.left-carousel,
+.right-carousel{
+    background-color: #ffffff;
+    height:336px;
+
+}
+.home-formname{
+    margin-bottom: 0px;
+}
+.hand{
+    cursor:pointer;
+}
+a:link{
+    text-decoration:none
+}

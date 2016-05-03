@@ -1,8 +1,11 @@
 package top.wthfeng.hfmusic.service.impl.home;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.wthfeng.hfmusic.dao.home.HomeDAO;
 import top.wthfeng.hfmusic.model.view.ViewHomeMusic;
 import top.wthfeng.hfmusic.model.view.ViewHotForm;
+import top.wthfeng.hfmusic.model.view.ViewHotSinger;
 import top.wthfeng.hfmusic.service.home.HomeService;
 
 import java.util.List;
@@ -14,19 +17,26 @@ import java.util.List;
  */
 @Service("homeService")
 public class HomeServiceImpl implements HomeService {
+    @Autowired
+    private HomeDAO homeDAO;
 
     @Override
     public List<ViewHotForm> HotForm() {
-        return null;
+        return homeDAO.hotForm();
     }
 
     @Override
     public List<ViewHomeMusic> monthlyHot() {
-        return null;
+        return homeDAO.monthlyHot();
     }
 
     @Override
     public List<ViewHomeMusic> monthlyNew() {
-        return null;
+        return homeDAO.monthlyNew();
+    }
+
+    @Override
+    public List<ViewHotSinger> hotSinger() {
+        return homeDAO.hotSinger();
     }
 }

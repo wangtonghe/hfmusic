@@ -2,6 +2,7 @@ package top.wthfeng.hfmusic.dao.home;
 
 import top.wthfeng.hfmusic.model.view.ViewHomeMusic;
 import top.wthfeng.hfmusic.model.view.ViewHotForm;
+import top.wthfeng.hfmusic.model.view.ViewHotSinger;
 
 import java.util.List;
 
@@ -15,17 +16,23 @@ public interface HomeDAO {
      * 获取热门歌单
      * @return
      */
-     List<ViewHotForm> HotForm();
+     List<ViewHotForm> hotForm();
 
     /**
      * 获取本月热门歌曲
      * @return
      */
-     List<ViewHomeMusic> monthlyHot(String month);
+     List<ViewHomeMusic> monthlyHot();
 
     /**
      * 获取本月热门新歌
      * @return
      */
-     List<ViewHomeMusic> monthlyNew(String month);
+     List<ViewHomeMusic> monthlyNew();
+
+    /**
+     * 获取热门歌手
+     * @return
+     */
+    List<ViewHotSinger> hotSinger();
 }

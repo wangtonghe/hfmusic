@@ -31,8 +31,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void register(RegisterUserParam param) throws Exception{
-		userDAO.insertUser(param);
+	public Integer register(RegisterUserParam param) throws Exception{
+		if(userDAO.selectByUserName(param.getUsername())==null) {
+			userDAO.insertUser(param);
+			return  0;
+		}else return -1;
 		
 	}
 	@Override

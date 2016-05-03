@@ -2,6 +2,7 @@ package top.wthfeng.hfmusic.service.home;
 
 import top.wthfeng.hfmusic.model.view.ViewHomeMusic;
 import top.wthfeng.hfmusic.model.view.ViewHotForm;
+import top.wthfeng.hfmusic.model.view.ViewHotSinger;
 
 import java.util.List;
 
@@ -29,6 +30,12 @@ public interface HomeService {
      * @return
      */
      List<ViewHomeMusic> monthlyNew();
+
+    /**
+     * 获取热门歌手
+     * @return
+     */
+    List<ViewHotSinger> hotSinger();
 
 
 
