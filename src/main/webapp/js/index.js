@@ -69,7 +69,7 @@ function initData() {
                 var div = "<div class=' col-lg-3 col-md-3 col-sm-4 ' ><img  src='" + list[i].cover + "' class='img-rounded hand' width='140' height='140'>" +
                     "<h6 class='home-formname'><a class='hand'>" + list[i].name +
                     "</a></h6><span class='glyphicon glyphicon-heart ' aria-hidden='true' >" +list[i].hot  +
-                    "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>"+list[i].creator+"</span></div>";
+                    "</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class='author'>"+list[i].creator+"</span></div>";
                     $(".hot-collection").append(div);
 
             }

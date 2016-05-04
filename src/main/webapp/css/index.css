@@ -1,6 +1,3 @@
-.carousel-inner > .active { /*如果是高亮图片，则左对齐*/
-    left: 300px;
-}
 .left-carousel,
 .right-carousel{
     background-color: #ffffff;
@@ -8,7 +5,10 @@
 
 }
 .home-formname{
-    margin-bottom: 0px;
+    margin-bottom: 5px;
+}
+.author{
+    font-size: small;
 }
 .hand{
     cursor:pointer;
