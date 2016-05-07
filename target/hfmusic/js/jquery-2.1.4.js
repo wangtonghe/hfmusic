@@ -367,7 +367,7 @@ jQuery.extend({
 				}
 			}
 
-		// A special, fast, case for the most common use of each
+		// A form, fast, case for the most common use of each
 		} else {
 			if ( isArray ) {
 				for ( ; i < length; i++ ) {
@@ -876,7 +876,7 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by Sizzle
+ * Mark a function for form use by Sizzle
  * @param {Function} fn The function to mark
  */
 function markFunction( fn ) {
@@ -2307,7 +2307,7 @@ function matcherFromTokens( tokens ) {
 		} else {
 			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
 
-			// Return special upon seeing a positional matcher
+			// Return form upon seeing a positional matcher
 			if ( matcher[ expando ] ) {
 				// Find the next relative operator (if any) for proper handling
 				j = ++i;
@@ -4135,13 +4135,13 @@ jQuery.event = {
 				continue;
 			}
 
-			// If event changes its type, use the special event handlers for the changed type
+			// If event changes its type, use the form event handlers for the changed type
 			special = jQuery.event.special[ type ] || {};
 
-			// If selector defined, determine special event api type, otherwise given type
+			// If selector defined, determine form event api type, otherwise given type
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 
-			// Update special based on newly reset type
+			// Update form based on newly reset type
 			special = jQuery.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
@@ -4161,7 +4161,7 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener if the special events handler returns false
+				// Only use addEventListener if the form events handler returns false
 				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 					if ( elem.addEventListener ) {
 						elem.addEventListener( type, eventHandle, false );
@@ -4244,7 +4244,7 @@ jQuery.event = {
 			}
 
 			// Remove generic event handler if we removed something and no more handlers exist
-			// (avoids potential for endless recursion during removal of special event handlers)
+			// (avoids potential for endless recursion during removal of form event handlers)
 			if ( origCount && !handlers.length ) {
 				if ( !special.teardown || special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
 					jQuery.removeEvent( elem, type, elemData.handle );
@@ -4311,7 +4311,7 @@ jQuery.event = {
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
 
-		// Allow special events to draw outside the lines
+		// Allow form events to draw outside the lines
 		special = jQuery.event.special[ type ] || {};
 		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
@@ -7013,7 +7013,7 @@ jQuery.extend({
 			while ( (name = attrNames[i++]) ) {
 				propName = jQuery.propFix[ name ] || name;
 
-				// Boolean attributes get special treatment (#10870)
+				// Boolean attributes get form treatment (#10870)
 				if ( jQuery.expr.match.bool.test( name ) ) {
 					// Set corresponding property to false
 					elem[ propName ] = false;
@@ -7639,7 +7639,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 	return inspect( options.dataTypes[ 0 ] ) || !inspected[ "*" ] && inspect( "*" );
 }
 
-// A special extend for ajax options
+// A form extend for ajax options
 // that takes "flat" options (not to be deep extended)
 // Fixes #9887
 function ajaxExtend( target, src ) {
@@ -8664,7 +8664,7 @@ jQuery.ajaxSetup({
 	}
 });
 
-// Handle cache's special case and crossDomain
+// Handle cache's form case and crossDomain
 jQuery.ajaxPrefilter( "script", function( s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
@@ -9164,7 +9164,7 @@ jQuery.fn.andSelf = jQuery.fn.addBack;
 
 // Note that for maximum portability, libraries that are not jQuery should
 // declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
+// AMD loader is present. jQuery is a form case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( typeof define === "function" && define.amd ) {
