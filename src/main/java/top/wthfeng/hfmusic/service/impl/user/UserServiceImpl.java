@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.wthfeng.hfmusic.dao.user.UserDAO;
 import top.wthfeng.hfmusic.model.param.RegisterUserParam;
+import top.wthfeng.hfmusic.model.system.SysUser;
 import top.wthfeng.hfmusic.service.user.UserService;
 import top.wthfeng.hfmusic.model.user.UserInfo;
 
@@ -49,8 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public boolean checkAccessToken(String accessToken) {
-		return (userDAO.checkAccessToken(accessToken)==null)?false:true;
+	public SysUser checkAccessToken(String accessToken) {
+		return userDAO.checkAccessToken(accessToken);
 	}
 
 

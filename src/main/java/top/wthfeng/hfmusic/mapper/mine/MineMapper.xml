@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.wthfeng.hfmusic.dao.mine.MineDAO" >
+
+    <!--获取我创建的歌单-->
+    <select id="getMyForm" parameterType="int" resultType="top.wthfeng.hfmusic.model.view.ViewMyForm">
+  select f.id formId,f.formName,f.cover,f.createTime,count(fd.musicId) as musicNum
+   from form f
+   left join form_details fd on f.id=fd.formId
+   where f.userId=#{userId}
+   group by f.id
+    </select>
+
+    <!--获取我收藏的歌单-->
+    <select id="getCollectForm" parameterType="int" resultType="top.wthfeng.hfmusic.model.view.ViewMyForm">
+     select f.id formId,f.formName,f.cover,f.createTime,count(fd.musicId) as musicNum
+       from form f
+       left join form_details fd on f.id=fd.formId
+       left join form_collect fc on f.id=fc.formId
+       where fc.userId=#{userId}
+       group by f.id
+    </select>
+
+    <select id="getCollectSinger" parameterType="int" resultType="top.wthfeng.hfmusic.model.view.ViewSinger">
+       select s.id singerId,s.name singerName,s.portrait,count(m.id) musicNum
+     from singer_collect sc
+    left join singer s on s.id=sc.singerId
+    left join music m on m.singerId=sc.singerId
+    where sc.userId=#{userId}
+    group by sc.singerId
+    </select>
+
+
+
+
+
+</mapper>

@@ -4,9 +4,9 @@ package top.wthfeng.hfmusic.model.view;
  * 热门收藏(歌单)
  * Created by wangtonghe on 2016/1/9.
  */
-public class ViewHotForm {
+public class ViewForm {
     /**
-     * 热门收藏id
+     * 歌单id
      */
     private Integer formId;
     /**

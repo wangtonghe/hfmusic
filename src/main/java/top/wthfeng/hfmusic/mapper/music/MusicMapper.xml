@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.wthfeng.hfmusic.dao.music.MusicDAO" >
 
+    <!--获取歌曲详情-->
+    <select id="details" parameterType="int" resultType="top.wthfeng.hfmusic.model.view.ViewMusicDetails">
+        SELECT m.id musicId,m.singerId,m.album,m.cover,m.lyric,m.url musicUrl,s.name singerName
+         from music m
+        left JOIN singer s on m.singerId=s.id
+         where m.id=#{musicId}
+    </select>
+
 
 
 </mapper>

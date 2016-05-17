@@ -1,0 +1,27 @@
+.hr-color{
+    margin-top: 5px;
+    height:6px;
+    border:none;
+    border-top:3px solid #FF3333;
+}
+.hr{
+
+    height:10px;
+    border:none;
+    border-top:2px solid #9d9d9d;
+
+}
+.singer-title{
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.singer-title-selected{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 6px 12px;
+}

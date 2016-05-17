@@ -1,7 +1,7 @@
 package top.wthfeng.hfmusic.service.home;
 
 import top.wthfeng.hfmusic.model.view.ViewHomeMusic;
-import top.wthfeng.hfmusic.model.view.ViewHotForm;
+import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewHotSinger;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface HomeService {
      * 获取热门歌单
      * @return
      */
-     List<ViewHotForm> HotForm();
+     List<ViewForm> HotForm();
 
     /**
      * 获取本月热门歌曲

@@ -26,8 +26,10 @@
        WHERE  id = #{id}
     </update>
 
-    <select id="checkAccessToken" parameterType="java.lang.String" resultType="java.lang.String">
-        SELECT accessToken from  `user`
+    <!--根据accessToken获取用户信息-->
+    <select id="checkAccessToken" parameterType="java.lang.String" resultType="top.wthfeng.hfmusic.model.system.SysUser">
+        SELECT u.id as userId,u.username userName,u.headPortrait headPortrait,u.sex
+          from  `user` u
         WHERE accessToken=#{accessToken}
     </select>
 

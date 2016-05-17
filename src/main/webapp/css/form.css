@@ -1,0 +1,30 @@
+.hand{
+    cursor:pointer;
+}
+.hr-color{
+    margin-top: 5px;
+    height:6px;
+    border:none;
+    border-top:3px solid #FF3333;
+}
+.form-title{
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.form-title-selected{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+.form-label-text{
+    margin-top: 8px;
+    cursor: pointer;
+    font-size: 14px;
+
+}

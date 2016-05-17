@@ -62,7 +62,7 @@ public class HomeController {
     }
 
     /**
-     * 获取首页本月热门歌手（10首）
+     * 获取首页本月热门歌手（12人）
      * @return
      */
     @RequestMapping(value = "/home/hotSinger",method = RequestMethod.GET)

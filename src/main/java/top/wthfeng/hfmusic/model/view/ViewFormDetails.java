@@ -16,7 +16,9 @@ public class ViewFormDetails {
     private String formName;
     private Date createTime;
     private String creator;
+    private String portrait;
     private int collectNum;
+    private String cover;
     private List<String> labels;
     private String info;
     private int musicNum;
@@ -92,5 +94,21 @@ public class ViewFormDetails {
 
     public void setMusicList(List<SimpleMusic> musicList) {
         this.musicList = musicList;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        portrait = portrait;
     }
 }

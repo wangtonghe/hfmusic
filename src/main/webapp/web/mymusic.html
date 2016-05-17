@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,131 +9,134 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Navbar Template for Bootstrap</title>
+    <title>和风音乐网 - 我的</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
-    <script src=../js/jquery-2.1.4.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.js" type="text/javascript"></script>
- </head>
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/mymusic.css" rel="stylesheet">
+
+</head>
 
 <body>
-      <div class="container">
-      <!-- Static navbar -->
-      <nav class="navbar navbar-pills ">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand "  href="#">和风音乐</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">首页</a></li>
-              <li><a href="found.html">发现</a></li>
-              <li><a href="singer.html">歌手</a></li>
-              <li><a href="mymusic.html">我的</a></li>
+<div class="container">
+
+    <nav class="navbar navbar-pills ">
+    </nav>
+
+    <div class="row my-form-nav ">
+        <div class="col-sm-3 col-md-2 col-lg-2 ">
+            <!-- 导航选项卡-->
+            <ul class="nav nav-stacked my-singer">
+                <li role="presentation" class="my-form-li" data-toggle='tab' href="#singer-pane">
+                    <a class="collapse my-form-title " role="button" >
+                        我收藏的歌手<span class="singer-num"></span>
+                    </a>
+                </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a role="button" class="login">登录<span class="sr-only">(current)</span></a></li>
-              <li><a role="button"  class="register">注册</a></li>
-              <li><a href="../navbar-fixed-top/">关于</a></li>
+
+            <ul class="nav nav-stacked my-form">
+                <li role="presentation" class="dropdown ">
+                    <a class="collapse my-form-title " data-toggle="collapse" role="button" data-target=".myForm">
+                        我创建的歌单<span class="form-num"></span><span class="caret"></span>
+                    </a>
+                    <ul class="collapse myForm myul"></ul>
+
+                </li>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav> 
-     
-       <div class="row">
-        <div class="col-sm-3 col-md-2 col-lg-2">
-         <!-- 导航选项卡-->
-      <ul class="nav nav-stacked">
-        <li><a href="#home" data-toggle="tab">我的歌单</a></li>
-        <li><a href="#profile" data-toggle="tab">收藏的歌单</a></li>
-        <li><a href="#messages" data-toggle="tab">收藏的歌手</a></li>
-        <li><a href="#settings" data-toggle="tab">收藏的MV</a></li>
-      </ul>
-<!-- 选项卡面板 -->
-   
+
+            <ul class="nav nav-stacked my-collect">
+                <li role="presentation" class="dropdown ">
+                    <a class="collapsed my-form-title " data-toggle="collapse" role="button" data-target=".myCollect">
+                        我收藏的歌单 <span class="form-num"></span> <span class="caret"></span>
+                    </a>
+                    <ul class="collapse myCollect myul"></ul>
+
+                </li>
+            </ul>
         </div>
+
+
         <div class="col-sm-9 col-md-10 col-lg-10  main">
-         <div class="tab-content">
-            <div class="tab-pane active" id="home">
-              <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>冬日饮雪水</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          		  </div><!-- /.col-lg-3 -->
-          	  <div class="col-lg-3">
-            	  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-             	 <h2>听听古老时光</h2>
-             	 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-             	 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-           	  </div><!-- /.col-lg-3 -->
+            <div class="tab-content">
+                <div class="tab-pane " id="form-pane">
+                    <div class="row" role="form">
+                        <div class="col-md-3">
+                            <img class="img-rounded form-cover" width="200px" height="200px"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <span class="form-title"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-rounded form-author-img" width="40" height="40"/>
+                                    <label class="form-author">wthfeng</label><label
+                                        class="form-date">2015-12-12</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn">收藏</button>
+                                    <button class="btn">分享</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label"></label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                <textarea class="form-control form-info" rows="5">
+                </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="col-sm-2">
+                                <span>歌曲列表</span>
+                                <span class="glyphicon glyphicon-play-circle"></span>
+                            </div>
+                            <div class="col-sm-2">
+                                共<label class="form-details-totalNum"></label>首歌
+                            </div>
+                            <table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+                                <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>歌曲名</td>
+                                    <td>歌手</td>
+                                    <td>专辑</td>
+                                    <td>操作</td>
+                                </tr>
+                                </thead>
+                                <tbody class="form-contant">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="singer-pane">
+                    <div class=" col-sm-offset-1">
+                        <div>
+                            <h3><label>我收藏的歌手</label></h3>
+                            <hr class="hr-color"/>
+                        </div>
+                        <div class="my-singer-list">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane" id="profile">
-             <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>总有那么一首歌</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          		  </div><!-- /.col-lg-3 -->
-          	  <div class="col-lg-3">
-            	  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-             	 <h2>华语深情男声</h2>
-             	 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-             	 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-           	  </div><!-- /.col-lg-3 -->
-               <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>九歌</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          	  </div><!-- /.col-lg-3 -->
-            
-            </div>
-            <div class="tab-pane" id="messages">
-             <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>生活和歌</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          		  </div><!-- /.col-lg-3 -->
-          	  <div class="col-lg-3">
-            	  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-             	 <h2>嗨，你还好吗</h2>
-             	 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-             	 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-           	  </div><!-- /.col-lg-3 -->
-               <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>九歌</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          	  </div><!-- /.col-lg-3 -->
-            
-            </div>
-            <div class="tab-pane" id="settings">
-              <div class="col-lg-3">
-             	 <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            	  <h2>九歌</h2>
-            	  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-          	  </div><!-- /.col-lg-3 -->
-          	  <div class="col-lg-3">
-            	  <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-             	 <h2>倾听冬日的问候</h2>
-             	 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-             	 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-           	  </div><!-- /.col-lg-3 -->            
-            </div>
-		</div>         
         </div>
-      </div>     
-    
-     </div>
-     
+    </div>
+
+</div>
+<div class="login-register">
+
+</div>
+<script src="../js/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="../js/bootstrap.js" type="text/javascript"></script>
+<script src="../js/mymusic.js"></script>
+<script src="../js/common.js"></script>
+
+
 </body>
 </html>

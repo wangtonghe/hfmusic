@@ -2,11 +2,17 @@ package top.wthfeng.hfmusic.interceptor;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import top.wthfeng.hfmusic.context.UserContext;
+import top.wthfeng.hfmusic.model.system.SysUser;
+import top.wthfeng.hfmusic.model.view.ViewError;
 import top.wthfeng.hfmusic.service.user.UserService;
+import top.wthfeng.hfmusic.util.StringUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户授权拦截器。 若用户未登录，则不能进行操作
@@ -23,7 +29,23 @@ public class AccessUserInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		String accessToken = request.getParameter("accessToken");
-		return userService.checkAccessToken(accessToken);
+		SysUser user =userService.checkAccessToken(accessToken);
+		if(user==null){
+			try {
+				Map<String,Object> result = new HashMap<String,Object>();
+				result.put("code", 1);
+				result.put("data", new ViewError("您还没有登录，请登录后重试"));
+				response.setHeader("Content-Type","text/html;charset=UTF-8");
+				response.getWriter().write(StringUtil.map2Json(result));
+				response.getWriter().close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
+		}else{
+			UserContext.setUser(user);
+		}
+		return true;
 	}
 
 	@Override

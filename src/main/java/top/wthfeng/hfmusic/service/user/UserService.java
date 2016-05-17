@@ -2,6 +2,7 @@ package top.wthfeng.hfmusic.service.user;
 
 
 import top.wthfeng.hfmusic.model.param.RegisterUserParam;
+import top.wthfeng.hfmusic.model.system.SysUser;
 import top.wthfeng.hfmusic.model.user.UserInfo;
 
 import java.util.Date;
@@ -39,6 +40,6 @@ public interface UserService {
 	 * @param accessToken
 	 * @return
      */
-	public boolean checkAccessToken(String accessToken);
+	public SysUser checkAccessToken(String accessToken);
 	
 }

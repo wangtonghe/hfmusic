@@ -18,40 +18,12 @@ $(function () {
         });
     });
 
-    //登录
-    $("#login_btn").on("click", function () {
-        var username = $("#login_name").val();
-        var password = $("#login_pwd").val();
-        $.post("/hfmusic/site/user/login", {username: username, password: password}, function (data) {
-            if (data.code == 0) {
-                sessionStorage.setItem("hf_user_accessToekn",data.data.accessToken);
-                $("#signin").modal("hide");
 
-            }
-            else {
-                alert(data.data);
-            }
-        })
-    });
 
-    //注册
-    $("#reg_btn").on("click", function () {
-        var username = $("#reg_name").val();
-        var password = $("#reg_pwd").val();
-        var password2 = $("#reg_pwd2").val();
-        if (password != password2) {
-            alert("你两次输入密码不一致");
-        } else {
-            $.post("/hfmusic/site/user/register", {username: username, password: password}, function (data) {
-                if (data.code == 0) {
-                    sessionStorage.setItem("hf_user_accessToekn",data.data.accessToken);
-                    $(".navbar .navbar-right .nav-username").text(username);
-                }else{
-                    alert(data.data);
-
-                }
-            })
-        }
+    //点击歌单封面，跳到歌单详情页
+    $(".hot-collection ").on("click","div img,div .home-formname",function(){
+        var formId=$(this).siblings(":input").val();
+        window.location.href="formdetails.html?formId="+formId;
     });
 
 
@@ -69,7 +41,7 @@ function initData() {
                 var div = "<div class=' col-lg-3 col-md-3 col-sm-4 ' ><img  src='" + list[i].cover + "' class='img-rounded hand' width='140' height='140'>" +
                     "<h6 class='home-formname'><a class='hand'>" + list[i].name +
                     "</a></h6><span class='glyphicon glyphicon-heart ' aria-hidden='true' >" +list[i].hot  +
-                    "</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class='author'>"+list[i].creator+"</span></div>";
+                    "</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class='author'>"+list[i].creator+"</span><input type='hidden' value='"+list[i].formId+"' /></div>";
                     $(".hot-collection").append(div);
 
             }

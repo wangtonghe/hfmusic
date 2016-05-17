@@ -11,7 +11,7 @@
   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
   
  <!--  自动包扫描，将该包注解含有controller的作为控制器，与spring-mybatis的包扫描不同 -->
-    <context:component-scan base-package="top.wthfeng.hfmusic.controller" />
+    <context:component-scan base-package="top.wthfeng.hfmusic" />
 	<mvc:annotation-driven/>
 
 	<!-- 异常处理，返回json结果 -->
@@ -26,6 +26,8 @@
 			<mvc:exclude-mapping path="/user/login" />
 			<mvc:exclude-mapping path="/user/register"/>
 			<mvc:exclude-mapping path="/home/*"/>
+			<mvc:exclude-mapping path="/form/*"/>
+			<mvc:exclude-mapping path="/singer/*" />
 			<bean class="top.wthfeng.hfmusic.interceptor.AccessUserInterceptor" />
 		</mvc:interceptor>
 

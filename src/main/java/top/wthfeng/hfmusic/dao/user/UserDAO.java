@@ -1,8 +1,9 @@
 package top.wthfeng.hfmusic.dao.user;
 
 import top.wthfeng.hfmusic.model.param.RegisterUserParam;
-import top.wthfeng.hfmusic.model.view.ViewUserLogin;
+import top.wthfeng.hfmusic.model.system.SysUser;
 import top.wthfeng.hfmusic.model.user.UserInfo;
+import top.wthfeng.hfmusic.model.view.ViewUserLogin;
 
 import java.util.Map;
 
@@ -49,7 +50,7 @@ public interface UserDAO {
 	 * @param accessToken
 	 * @return
      */
-	public String checkAccessToken(String accessToken);
+	public SysUser checkAccessToken(String accessToken);
 	
 
 }

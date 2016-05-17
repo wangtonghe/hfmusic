@@ -1,0 +1,75 @@
+/*左侧菜单*/
+.sidebar-menu{
+    border-right: 1px solid #c4c8cb;
+}
+
+.myul li{
+    list-style: none;
+    margin-left: -15px;
+    margin-bottom: 5px;
+
+}
+.left{
+    display: inline;
+    float: left;
+    margin-left: -20px;
+    overflow: hidden;
+    width: 40px;
+}
+.myul li div{
+    float: left;
+    margin-right: 5px;
+
+}
+.my-form-nav li * {
+    cursor: pointer;
+    vertical-align: middle;
+}
+.avatar {
+    display: block;
+    position: relative;
+    width: 40px;
+}
+.my-form-title{
+    color: #000;
+    font-size: 14px;
+    font-weight:800;
+}
+.f-name{
+    width:100px;
+    overflow: hidden;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    word-break:keep-all;
+    text-overflow:ellipsis;
+}
+.f-num{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #999;
+}
+.my-margin{
+    margin-top: 20px;
+}
+.my-singer-name{
+    font-family: "Bodoni MT Poster Compressed";
+    font-size:20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.my-singer-musicNum{
+    font-size:12px;
+    color:#999
+}
+.hr-color{
+    height:10px;
+    border:none;
+    border-top:5px solid #FF3333;
+}
+.hr{
+    height:10px;
+    border:none;
+    border-top:2px solid #9d9d9d;
+
+}

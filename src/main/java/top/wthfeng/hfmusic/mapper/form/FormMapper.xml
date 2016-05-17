@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.wthfeng.hfmusic.dao.form.FormDAO" >
+<mapper namespace="top.wthfeng.hfmusic.dao.form.FormDAO">
+
+    <!--获取歌单详情-->
+    <resultMap id="getDetailsMap" type="top.wthfeng.hfmusic.model.view.ViewFormDetails">
+        <id column="formId" property="formId"/>
+        <result column="formName" property="formName"/>
+        <result column="info" property="info"/>
+        <result column="createTime" property="createTime"/>
+        <result column="creator" property="creator"/>
+        <result column="portrait" property="portrait"/>
+        <result column="cover" property="cover"/>
+        <result column="collectNum" property="collectNum"/>
+        <result column="musicNum" property="musicNum"/>
+        <collection property="labels" ofType="java.lang.String">
+            <result column="label"/>
+        </collection>
+        <collection property="musicList" ofType="top.wthfeng.hfmusic.model.music.SimpleMusic">
+            <result property="musicId" column="musicId"/>
+            <result property="musicName" column="musicName"/>
+            <result property="album" column="album"/>
+            <result property="singerName" column="singerName"/>
+            <result property="musicUrl" column="musicUrl"/>
+        </collection>
+    </resultMap>
+
     <!--获取歌单详情-->
     <select id="getDetails" parameterType="java.lang.Integer"
-            resultType="top.wthfeng.hfmusic.model.view.ViewFormDetails">
-        SELECT * from form f
-        left join form_details fd on f.id=fd.formId
+            resultMap="getDetailsMap">
+        SELECT f.id as formId,f.formName,f.info ,sl.labelName label,f.createTime,u.headPortrait portrait, portrait,f.cover,
+  u.nickName creator,m.id musicId,
+ (select count(fc.id) from form_collect fc  where fc.formId=f.id) as  collectNum,
+ (select count(fd.id) from form_details fd where fd.formId=f.id) as musicNum,
+ m.id as musicId,m.name as musicName,m.album,s.name as singerName,m.url musicUrl
+ from form f
+  left join form_details fd on f.id=fd.formId
+  LEFT JOIN music m on fd.musicId=m.id
+  left join form_label fl on f.id=fl.formId
+left join syslabel sl on sl.id=fl.labelId
+  left join user u on f.userId=u.id
+ left join singer s on m.singerId=s.id
+ where f.id=#{formId}
+    </select>
+
+    <!--根据标签获取歌单-->
+    <select id="getFormByLabel" parameterType="java.util.Map" resultType="top.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT distinct f.id as formId,f.formName name,f.cover,u.nickName creator,
+        f.issystem as isSystem,
+        ((SELECT count(fc.id) FROM form_collect fc where fc.formId=f.id)+f.likenum)as hot
+        from form f
+        left JOIN `user` u on f.userId=u.id
+        left join form_label fl on f.id=fl.formId
+        left join syslabel sl on sl.id=fl.labelId
+        WHERE f.online=1
+        <if test="label!=null and label!=''">
+            <bind name="labelStr" value="'%'+label+'%' " />
+            and  sl.labelName like #{labelStr}
+        </if>
+        order by hot desc
+        limit #{offSet},#{pageSize}
+    </select>
+
+    <!--根据标签id获取歌单-->
+    <select id="getFormByLabelId" parameterType="java.util.Map" resultType="top.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT distinct f.id as formId,f.formName name,f.cover,u.nickName creator,
+        f.issystem as isSystem,
+        ((SELECT count(fc.id) FROM form_collect fc where fc.formId=f.id)+f.likenum)as hot
+        from form f
+        left JOIN `user` u on f.userId=u.id
+        left join form_label fl on f.id=fl.formId
+        WHERE f.online=1 and fl.labelId=#{labelId}
+        order by hot desc
+        limit #{offSet},#{pageSize}
+    </select>
+
+    <!--获取根据标签获取歌单总数-->
+    <select id="getFormByLabelNum" parameterType="java.lang.String" resultType="int">
+        select count(*) from (  SELECT f.id
+        from form f
+        left join form_label fl on f.id=fl.formId
+        left join syslabel sl on fl.labelId=sl.id
+        WHERE f.online=1
+        <if test="label!=null and label!=''">
+        <bind name="labelStr" value="'%'+label+'%' " />
+            and   sl.labelName like #{labelStr}
+        </if>
+        group by f.id) t
+    </select>
+
+    <!--获取根据标签id获取歌单总数-->
+    <select id="getFormByLabelIdNum" parameterType="int" resultType="int">
+        select count(*) from (  SELECT f.id
+        from form f
+        left join form_label fl on f.id=fl.formId
+        WHERE f.online=1
+            and   fl.labelId = #{labelId}
+        group by f.id) t
+    </select>
+
+    <!--获取系统标签-->
+    <select id="getSysLabel" resultType="top.wthfeng.hfmusic.model.view.ViewSysLabel">
+        select s.id labelId,s.labelName from syslabel s
     </select>
 </mapper>

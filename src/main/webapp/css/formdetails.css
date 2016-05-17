@@ -1,3 +1,6 @@
 .form-title{
     font-size: large;
 }
+.glyphicon{
+    cursor: pointer;
+}
