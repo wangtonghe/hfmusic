@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 <mapper namespace="top.wthfeng.hfmusic.dao.form.FormDAO">
+=======
+<mapper namespace="top.wthfeng.hfmusic.dao.form.FormDAO" >
+>>>>>>> 66bbe8569cc8e19b8034b31b850f655d1125afb3
 
     <!--获取歌单详情-->
     <resultMap id="getDetailsMap" type="top.wthfeng.hfmusic.model.view.ViewFormDetails">
         <id column="formId" property="formId"/>
         <result column="formName" property="formName"/>
         <result column="info" property="info"/>
+<<<<<<< HEAD
         <result column="createTime" property="createTime"/>
         <result column="creator" property="creator"/>
         <result column="portrait" property="portrait"/>
@@ -15,28 +20,47 @@
         <result column="musicNum" property="musicNum"/>
         <collection property="labels" ofType="java.lang.String">
             <result column="label"/>
+=======
+        <result column="createTime" property="createTime" />
+        <result column="creator" property="creator"/>
+        <result column="collectNum" property="collcetNum"/>
+        <result column="singerName" property="singerName"/>
+        <collection property="labels" ofType="java.lang.String">
+            <result column="label" />
+>>>>>>> 66bbe8569cc8e19b8034b31b850f655d1125afb3
         </collection>
         <collection property="musicList" ofType="top.wthfeng.hfmusic.model.music.SimpleMusic">
             <result property="musicId" column="musicId"/>
             <result property="musicName" column="musicName"/>
             <result property="album" column="album"/>
             <result property="singerName" column="singerName"/>
+<<<<<<< HEAD
             <result property="musicUrl" column="musicUrl"/>
+=======
+>>>>>>> 66bbe8569cc8e19b8034b31b850f655d1125afb3
         </collection>
     </resultMap>
 
     <!--获取歌单详情-->
     <select id="getDetails" parameterType="java.lang.Integer"
             resultMap="getDetailsMap">
+<<<<<<< HEAD
         SELECT f.id as formId,f.formName,f.info ,sl.labelName label,f.createTime,u.headPortrait portrait, portrait,f.cover,
   u.nickName creator,m.id musicId,
  (select count(fc.id) from form_collect fc  where fc.formId=f.id) as  collectNum,
  (select count(fd.id) from form_details fd where fd.formId=f.id) as musicNum,
  m.id as musicId,m.name as musicName,m.album,s.name as singerName,m.url musicUrl
+=======
+       SELECT f.id as formId,f.formName,f.info ,fl.labelName label,f.createTime,
+  u.nickName creator,m.id musicId,
+ (select count(fc.id) from form_collect fc  where fc.formId=f.id) as  collectNum,
+ m.id as musicId,m.name as musicName,m.album,s.name as singerName
+>>>>>>> 66bbe8569cc8e19b8034b31b850f655d1125afb3
  from form f
   left join form_details fd on f.id=fd.formId
   LEFT JOIN music m on fd.musicId=m.id
   left join form_label fl on f.id=fl.formId
+<<<<<<< HEAD
 left join syslabel sl on sl.id=fl.labelId
   left join user u on f.userId=u.id
  left join singer s on m.singerId=s.id
@@ -101,5 +125,11 @@ left join syslabel sl on sl.id=fl.labelId
     <!--获取系统标签-->
     <select id="getSysLabel" resultType="top.wthfeng.hfmusic.model.view.ViewSysLabel">
         select s.id labelId,s.labelName from syslabel s
+=======
+  left join user u on f.userId=u.id
+ left join singer s on m.singerId=s.id
+ where f.id=1
+
+>>>>>>> 66bbe8569cc8e19b8034b31b850f655d1125afb3
     </select>
 </mapper>
