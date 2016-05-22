@@ -16,20 +16,20 @@ public interface MineService {
      * 得到我的歌单
      * @return
      */
-    List<ViewMyForm> getMyForm(int userId);
+    List<ViewMyForm> getMyForm(int userId)throws Exception;
 
     /**
      * 得到我收藏的歌单
      * @return
      */
-    List<ViewMyForm> getCollectForm(int userId);
+    List<ViewMyForm> getCollectForm(int userId)throws Exception;
 
     /**
      * 获取收藏的歌手
      * @param userId
      * @return
      */
-    List<ViewSinger> getCollectSinger(int userId);
+    List<ViewSinger> getCollectSinger(int userId)throws Exception;
 
 
 

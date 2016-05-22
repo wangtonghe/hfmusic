@@ -24,22 +24,22 @@ public class HomeServiceImpl implements HomeService {
     private HomeDAO homeDAO;
 
     @Override
-    public List<ViewForm> HotForm() {
+    public List<ViewForm> HotForm()throws Exception {
         return homeDAO.hotForm(HOT_FORM_NUM);
     }
 
     @Override
-    public List<ViewHomeMusic> monthlyHot() {
+    public List<ViewHomeMusic> monthlyHot()throws Exception {
         return homeDAO.monthlyHot();
     }
 
     @Override
-    public List<ViewHomeMusic> monthlyNew() {
+    public List<ViewHomeMusic> monthlyNew()throws Exception {
         return homeDAO.monthlyNew();
     }
 
     @Override
-    public List<ViewHotSinger> hotSinger() {
+    public List<ViewHotSinger> hotSinger()throws Exception {
         return homeDAO.hotSinger();
     }
 }

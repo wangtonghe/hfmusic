@@ -8,38 +8,50 @@
     <meta name="description" content="和风音乐网">
     <meta name="author" content="和风科技">
     <link rel="icon" href="../../favicon.ico">
-
     <title>和风音乐网</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/index.css" rel="stylesheet">
-
-
+    <link href="../css/common.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid ">
     <!-- Static navbar -->
-    <nav class="navbar navbar-pills ">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand home-title " href="index.html">和风音乐</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="home-nav active"><a href="index.html" >首页</a></li>
+                    <li class="home-nav"><a  href="form.html">歌单</a></li>
+                    <li class="home-nav"><a  href="singer.html">歌手</a></li>
+                    <li class="home-nav"><a  href="mymusic.html">我的</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a role="button" class="login">登录<span class="sr-only">(current)</span></a></li>
+                    <li><a role="button" class="register">注册</a></li>
+                    <li><a href="about.html">关于</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
-
-    <div class="col-md-2 left-carousel col-lg-2">
-
-    </div>
-    <div class="col-md-8 col-lg-8 ">
-        <!-- Carousel
-        ================================================== -->
+    <div class="row margin-top-fill">
         <div id="myCarousel" class=" carousel slide" data-ride="carousel" data-pause="hover">
             <div class="carousel-inner" role="listbox">
                 <div class="item active" data-pause="hover">
-                    <img class="first-slide" src="../image/cover-01.jpg" alt="First slide">
+                    <img class="first-slide" src="../image/hf1.PNG" alt="First slide">
                 </div>
                 <div class="item" data-pause="hover">
-                    <img class="second-slide" src="../image/cover-02.jpg" alt="Second slide">
+                    <img class="second-slide" src="../image/hf2.PNG" alt="Second slide">
                 </div>
                 <div class="item" data-pause="hover">
-                    <img class="third-slide" src="../image/cover-03.jpg" alt="Third slide">
+                    <img class="third-slide" src="../image/hf3.PNG" alt="Third slide">
                 </div>
                 <div class="item" data-pause="hover">
-                    <img class="four-slide" src="../image/cover-04.jpg" alt="Third slide">
+                    <img class="four-slide" src="../image/hf4.PNG" alt="Third slide">
                 </div>
             </div>
             <ol class="carousel-indicators">
@@ -57,45 +69,43 @@
                 <span class="sr-only">Next</span>
             </a>
         </div><!-- /.carousel -->
-    </div>
-    <div class="col-md-2 col-lg-2 right-carousel">
 
     </div>
+</div>
+<div class="container body-line">
     <div class="row">
-        <div class="col-lg-11 col-lg-offset-1 col-md-offset-1">
-            <h3>热门收藏</h3>
+        <div class="col-lg-9 col-md-9 col-lg-offset-2 col-md-offset-2">
+            <h3><span class="glyphicon glyphicon-music"></span>&nbsp;&nbsp;热门收藏</h3>
+            <hr class="hr">
         </div>
     </div>
     <div class="row">
-        <div class="col-md-offset-1"><!--热门收藏内容-->
+        <div class="col-md-offset-2 col-lg-offset-2 col-md-9 col-lg-9"><!--热门收藏内容-->
             <div class="row hot-collection"></div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-11 col-lg-offset-1 col-md-offset-1">
+        <div class="col-lg-8 col-lg-offset-2 col-md-offset-2">
             <h3>热门单曲</h3>
         </div>
     </div>
-    <div class="col-lg-3 col-xs-offset-1 col-md-offset-1  month-hot">
+    <div class="row">
+    <div class="col-lg-3 col-md-3 col-lg-offset-2 col-md-offset-2  month-hot">
         <div class="list-group">
             <a href="#" class="list-group-item active text-center ">本月热歌</a>
 
         </div>
     </div>
-    <div class="col-lg-3 col-xs-offset-1  col-md-offset-1 month-new">
+        <div class="col-lg-3 col-md-3  month-new">
         <div class="list-group">
             <a href="#" class="list-group-item active text-center month-new">本月新歌</a>
-
         </div>
     </div>
-
-    <div class="col-lg-3 col-xs-offset-1 hot-singer">
+    <div class="col-lg-3 col-md-3 hot-singer">
         <div class="list-group">
             <a href="#" class="list-group-item active text-center hot-singer">热门歌手</a>
-
         </div>
-        <div class="col-lg-4 col-xs-offset-2">
-        </div>
+    </div>
     </div>
 
 

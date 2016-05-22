@@ -32,7 +32,7 @@ public class FormServiceImpl implements FormService {
     private HomeDAO homeDAO;
 
     @Override
-    public ViewPageList<ViewForm> getFormByLabel(Map<String,Object> param) {
+    public ViewPageList<ViewForm> getFormByLabel(Map<String,Object> param)throws Exception {
         ViewPageList<ViewForm> data=new ViewPageList<>();
         data.setList(formDAO.getFormByLabel(param));
         data.setTotalPageNum(NumberUtil.getPageNum(formDAO.getFormByLabelNum((String)param.get("label")),(Integer) param.get("pageSize")));
@@ -54,12 +54,12 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public List<ViewSysLabel> getSysLabel() {
+    public List<ViewSysLabel> getSysLabel()throws Exception {
         return formDAO.getSysLabel();
     }
 
     @Override
-    public ViewFormDetails getDetails(Integer formId) {
+    public ViewFormDetails getDetails(Integer formId)throws Exception {
         return formDAO.getDetails(formId);
     }
 }

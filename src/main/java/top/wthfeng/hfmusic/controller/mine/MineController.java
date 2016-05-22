@@ -32,7 +32,7 @@ public class MineController {
      * @return
      */
     @RequestMapping(value = "/getMyForm",method = RequestMethod.GET)
-    public Map<String,Object> getMyForm(){
+    public Map<String,Object> getMyForm()throws Exception{
         Map<String,Object> result = new HashMap<>();
         int userId= UserContext.getUser().getUserId();
         List<ViewMyForm> list = mineService.getMyForm(userId);
@@ -46,7 +46,7 @@ public class MineController {
      * @return
      */
     @RequestMapping(value = "/getCollectForm",method = RequestMethod.GET)
-    public Map<String,Object> getCollectForm(){
+    public Map<String,Object> getCollectForm()throws Exception{
         Map<String,Object> result = new HashMap<>();
         int userId= UserContext.getUser().getUserId();
         List<ViewMyForm> list = mineService.getCollectForm(userId);
@@ -60,7 +60,7 @@ public class MineController {
      * @return
      */
     @RequestMapping(value = "/getCollectSinger",method = RequestMethod.GET)
-    public Map<String,Object> getCollectSinger(){
+    public Map<String,Object> getCollectSinger()throws Exception{
         Map<String,Object> result = new HashMap<>();
         int userId= UserContext.getUser().getUserId();
         List<ViewSinger> list = mineService.getCollectSinger(userId);

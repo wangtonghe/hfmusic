@@ -14,7 +14,7 @@ public interface MusicService {
      * @param musicId
      * @return
      */
-    ViewMusicDetails details(int musicId);
+    ViewMusicDetails details(int musicId)throws Exception;
 
 
 }

@@ -29,7 +29,7 @@ public class FormController {
      * @param formId
      */
     @RequestMapping(value = "/details",method = RequestMethod.GET)
-    public Map<String,Object>  getDetails(int formId){
+    public Map<String,Object>  getDetails(int formId)throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",formService.getDetails(formId));
@@ -44,7 +44,7 @@ public class FormController {
      * @return
      */
     @RequestMapping(value = "/getFormByLabel",method = RequestMethod.GET)
-    public Map<String,Object> getFormByLabel(String label, PageParam pageParam){
+    public Map<String,Object> getFormByLabel(String label, PageParam pageParam)throws Exception{
         Map<String,Object> result = new HashMap<>();
         Map<String,Object> param = new HashMap<>();
         param.put("pageSize",pageParam.getPageSize());
@@ -61,7 +61,7 @@ public class FormController {
      * @return
      */
     @RequestMapping(value = "/getFormByLabelId",method = RequestMethod.GET)
-    public Map<String,Object> getFormByLabelId(PageParam pageParam,int labelId){
+    public Map<String,Object> getFormByLabelId(PageParam pageParam,int labelId)throws Exception{
         Map<String,Object> result = new HashMap<>();
         Map<String,Object> param = new HashMap<>();
         param.put("pageSize",pageParam.getPageSize());
@@ -78,7 +78,7 @@ public class FormController {
      * @return
      */
     @RequestMapping(value = "/getSysLabel",method = RequestMethod.GET)
-    public Map<String,Object> getSysLabel(){
+    public Map<String,Object> getSysLabel()throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",formService.getSysLabel());

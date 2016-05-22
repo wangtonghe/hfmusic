@@ -8,6 +8,7 @@ $(function(){
     initAtoZ();
 
 
+    //点击字符选择歌手
     $(".singer-title").on("click",function(){
        if(!$(this).hasClass("singer-title-selected")){
            $(this).addClass("singer-title-selected");
@@ -15,9 +16,9 @@ $(function(){
        }
         var character = $(this).text();
         initSinger(character,1);
-
-
     });
+
+
 
 
 
@@ -37,7 +38,7 @@ function initSinger(character,pageNum){
                 if(data.code==0){
                     $(".singer").html("");
                     for(var i=0;i< d.list.length;i++){
-                        var row = "<div class=' col-lg-2 col-md-4 col-sm-4 ' ><img  src='" + d.list[i].portrait + "' class='img-rounded hand' width='140' height='140'>" +
+                        var row = "<div class=' col-lg-2 col-md-4 col-sm-4 singer-div ' ><img  src='" + d.list[i].portrait + "' class='img-rounded hand' width='140' height='140'>" +
                             "<h6 class='home-formname'><a class='hand'>" + d.list[i].singerName +
                             "</a></h6></div>";
                         $(".singer").append(row);

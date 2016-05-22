@@ -25,7 +25,7 @@ public class SingerServiceImpl implements SingerService {
 
 
     @Override
-    public ViewPageList<ViewSinger> getSingerByArea(SingerParam param) {
+    public ViewPageList<ViewSinger> getSingerByArea(SingerParam param) throws Exception{
         ViewPageList<ViewSinger> data = new ViewPageList<>();
         data.setList(singerDAO.getSingerByArea(param));
         data.setTotalPageNum(NumberUtil.getPageNum(singerDAO.getSingerByAreaNum(param),param.getPageSize()));
@@ -33,7 +33,7 @@ public class SingerServiceImpl implements SingerService {
     }
 
     @Override
-    public ViewPageList<ViewSinger> getSingerByChar(SingerParam param) {
+    public ViewPageList<ViewSinger> getSingerByChar(SingerParam param)throws Exception {
         ViewPageList<ViewSinger> data = new ViewPageList<>();
         if(param.getCharacter().equals("热门")){
             data.setList(singerDAO.getSingerHot(HOT_SINGER_NUM));

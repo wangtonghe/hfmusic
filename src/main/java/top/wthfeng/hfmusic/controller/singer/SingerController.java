@@ -31,7 +31,7 @@ public class SingerController {
      */
     @Deprecated
     @RequestMapping(value = "/getSingerByArea",method = RequestMethod.GET)
-    public Map<String,Object> getSingerByArea(SingerParam param){
+    public Map<String,Object> getSingerByArea(SingerParam param)throws Exception{
         Map<String,Object> result = new HashMap<>();
         ViewPageList<ViewSinger> list = singerService.getSingerByArea(param);
         result.put("code",0);
@@ -45,7 +45,7 @@ public class SingerController {
      * @return
      */
     @RequestMapping(value = "/getSingerByChar",method = RequestMethod.GET)
-    public Map<String,Object> getSingerByChar(SingerParam param){
+    public Map<String,Object> getSingerByChar(SingerParam param)throws Exception{
         Map<String,Object> result = new HashMap<>();
         ViewPageList<ViewSinger> list = singerService.getSingerByChar(param);
         result.put("code",0);

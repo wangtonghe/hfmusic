@@ -2,6 +2,7 @@ package top.wthfeng.hfmusic.interceptor;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+import top.wthfeng.hfmusic.model.view.ViewError;
 import top.wthfeng.hfmusic.util.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +43,7 @@ public class ExceptionInterceptor extends SimpleMappingExceptionResolver {
         try {
             Map<String,Object> result = new HashMap<String,Object>();
             result.put("code", 1);
-            result.put("data", ex.getMessage());
+            result.put("data", new ViewError(ex.getMessage()));
             response.setHeader("Content-Type","text/html;charset=UTF-8");
             response.getWriter().write(StringUtil.map2Json(result));
             response.getWriter().close();

@@ -16,14 +16,14 @@ public interface SingerService {
      * @param param
      * @return
      */
-    ViewPageList<ViewSinger> getSingerByArea(SingerParam param);
+    ViewPageList<ViewSinger> getSingerByArea(SingerParam param)throws Exception;
 
     /**
      * 根据首字符获取歌手
      * @param param
      * @return
      */
-    ViewPageList<ViewSinger> getSingerByChar(SingerParam param);
+    ViewPageList<ViewSinger> getSingerByChar(SingerParam param)throws Exception;
 
 
 

@@ -6,7 +6,9 @@ package top.wthfeng.hfmusic.model.view;
  * @email wthfeng@126.com
  */
 public class ViewMusicDetails {
+
     private int musicId;
+    private String musicName;
     private String cover;
     private String singer;
     private int singerId;
@@ -16,9 +18,9 @@ public class ViewMusicDetails {
      */
     private String musicUrl;
     /**
-     * 歌词url
+     * 歌词文本
      */
-    private String lyricUrl;
+    private String lyric;
 
     public int getMusicId() {
         return musicId;
@@ -68,11 +70,19 @@ public class ViewMusicDetails {
         this.musicUrl = musicUrl;
     }
 
-    public String getLyricUrl() {
-        return lyricUrl;
+    public String getLyric() {
+        return lyric;
     }
 
-    public void setLyricUrl(String lyricUrl) {
-        this.lyricUrl = lyricUrl;
+    public void setLyric(String lyric) {
+        this.lyric = lyric;
+    }
+
+    public String getMusicName() {
+        return musicName;
+    }
+
+    public void setMusicName(String musicName) {
+        this.musicName = musicName;
     }
 }

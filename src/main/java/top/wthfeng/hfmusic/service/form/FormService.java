@@ -19,27 +19,27 @@ public interface FormService {
      * @param formId
      * @return
      */
-    ViewFormDetails getDetails(Integer formId);
+    ViewFormDetails getDetails(Integer formId)throws Exception;
 
     /**
      * 根据标签获取歌单
      * @param param
      * @return
      */
-    ViewPageList<ViewForm> getFormByLabel(Map<String,Object> param);
+    ViewPageList<ViewForm> getFormByLabel(Map<String,Object> param)throws Exception;
 
     /**
      * 根据标签id获取歌单
      * @param param
      * @return
      */
-    ViewPageList<ViewForm> getFormByLabelId(Map<String,Object> param);
+    ViewPageList<ViewForm> getFormByLabelId(Map<String,Object> param) throws Exception;
 
     /**
      * 获取系统标签
      * @return
      */
-    List<ViewSysLabel> getSysLabel();
+    List<ViewSysLabel> getSysLabel()throws Exception;
 
 
 

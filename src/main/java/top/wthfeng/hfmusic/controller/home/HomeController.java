@@ -28,7 +28,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/home/hotForm",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> hotForm(){
+    public Map<String,Object> hotForm()throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",homeService.HotForm());
@@ -41,7 +41,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/home/monthlyHot",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> monthlyHot(){
+    public Map<String,Object> monthlyHot()throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",homeService.monthlyHot());
@@ -54,7 +54,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/home/monthlyNew",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> monthlyNew(){
+    public Map<String,Object> monthlyNew()throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",homeService.monthlyNew());
@@ -67,7 +67,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/home/hotSinger",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> hotSinger(){
+    public Map<String,Object> hotSinger()throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",homeService.hotSinger());

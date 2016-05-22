@@ -27,7 +27,7 @@ public class MusicController {
      * @return
      */
     @RequestMapping(value = "/details",method = RequestMethod.GET)
-    public Map<String,Object> details(int musicId){
+    public Map<String,Object> details(int musicId)throws Exception{
         Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("data",musicService.details(musicId));

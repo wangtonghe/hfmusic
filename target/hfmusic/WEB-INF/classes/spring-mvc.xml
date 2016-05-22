@@ -28,6 +28,7 @@
 			<mvc:exclude-mapping path="/home/*"/>
 			<mvc:exclude-mapping path="/form/*"/>
 			<mvc:exclude-mapping path="/singer/*" />
+			<mvc:exclude-mapping path="/music/*"/>
 			<bean class="top.wthfeng.hfmusic.interceptor.AccessUserInterceptor" />
 		</mvc:interceptor>
 

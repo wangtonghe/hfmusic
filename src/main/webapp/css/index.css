@@ -1,8 +1,17 @@
-.left-carousel,
-.right-carousel{
-    background-color: #ffffff;
-    height:336px;
+.left-carousel{
+    margin-left: -15px;
 
+    background-color: yellow;
+    height: 237px;
+}
+.right-carousel{
+    margin-right: -15px;
+    background-color: yellow;
+    height: 237px;
+}
+.div-carousel{
+    margin-left: -15px;
+    margin-right: -15px;
 }
 .home-formname{
     margin-bottom: 5px;
@@ -15,4 +24,17 @@
 }
 a:link{
     text-decoration:none
+}
+.margin-top-fill{
+    margin-top: -15px;
+}
+
+.body-line{
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+}
+.hr{
+    margin-top: -5px;
+    color: red;
+    width: 3px;
 }

@@ -12,17 +12,39 @@
     <title>和风音乐网 - 歌手 </title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/singer.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
 
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
     <!--导航-->
-    <nav class="navbar navbar-pills ">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand home-title " href="index.html">和风音乐</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="home-nav"><a href="index.html" >首页</a></li>
+                    <li class="home-nav"><a  href="form.html">歌单</a></li>
+                    <li class="home-nav active"><a  href="singer.html">歌手</a></li>
+                    <li class="home-nav"><a  href="mymusic.html">我的</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a role="button" class="login">登录<span class="sr-only">(current)</span></a></li>
+                    <li><a role="button" class="register">注册</a></li>
+                    <li><a href="about.html">关于</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
+    </div>
+<div class="container">
 
-
-    <div class="row">
+    <div class="row margin-top-fill">
         <div class="col-lg-11 col-lg-offset-1 col-md-offset-1">
             <div class="row singer-title-list">
                 <label class="singer-title singer-title-all">热门</label>

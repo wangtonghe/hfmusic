@@ -21,17 +21,17 @@ public class MineServiceImpl implements MineService {
     private MineDAO mineDAO;
 
     @Override
-    public List<ViewMyForm> getMyForm(int userId) {
+    public List<ViewMyForm> getMyForm(int userId)throws Exception {
         return mineDAO.getMyForm(userId);
     }
 
     @Override
-    public List<ViewMyForm> getCollectForm(int userId) {
+    public List<ViewMyForm> getCollectForm(int userId)throws Exception {
         return mineDAO.getCollectForm(userId);
     }
 
     @Override
-    public List<ViewSinger> getCollectSinger(int userId) {
+    public List<ViewSinger> getCollectSinger(int userId)throws Exception {
         return mineDAO.getCollectSinger(userId);
     }
 }
