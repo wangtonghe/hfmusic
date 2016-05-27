@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.wthfeng.hfmusic.dao.form.FormDAO;
 import top.wthfeng.hfmusic.dao.home.HomeDAO;
+import top.wthfeng.hfmusic.model.param.FormCollectParam;
 import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewFormDetails;
 import top.wthfeng.hfmusic.model.view.ViewPageList;
@@ -59,7 +60,21 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public ViewFormDetails getDetails(Integer formId)throws Exception {
-        return formDAO.getDetails(formId);
+    public void collect(FormCollectParam param) {
+        if(param.getFlag()==0){
+            formDAO.cancelCollect(param);
+        }else{
+            formDAO.collect(param);
+        }
+    }
+
+    @Override
+    public List<ViewForm> getByName(String key) {
+        return formDAO.getByName(key);
+    }
+
+    @Override
+    public ViewFormDetails getDetails(Map<String,Integer> param)throws Exception {
+        return formDAO.getDetails(param);
     }
 }

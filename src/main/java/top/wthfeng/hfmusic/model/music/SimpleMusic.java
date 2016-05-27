@@ -9,9 +9,19 @@ package top.wthfeng.hfmusic.model.music;
 public class SimpleMusic {
     private int musicId;
     private String musicName;
+    private int singerId;
     private String singerName;
     private String album;
     private String musicUrl;
+    private int isLike;
+
+    public int getSingerId() {
+        return singerId;
+    }
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
 
     public int getMusicId() {
         return musicId;
@@ -51,5 +61,13 @@ public class SimpleMusic {
 
     public void setMusicUrl(String musicUrl) {
         this.musicUrl = musicUrl;
+    }
+
+    public int getIsLike() {
+        return isLike;
+    }
+
+    public void setIsLike(int isLike) {
+        this.isLike = isLike;
     }
 }

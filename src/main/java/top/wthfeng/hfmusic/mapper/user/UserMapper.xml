@@ -33,4 +33,10 @@
         WHERE accessToken=#{accessToken}
     </select>
 
+   <insert id="createDefaultForm" parameterType="top.wthfeng.hfmusic.model.form.DefalutForm">
+       INSERT INTO  form(formName,userId,createTime,cover,issystem,online)
+       values(#{formName},#{userId},#{createTime},#{cover},#{isSystem},#{online})
+   </insert>
+
+
 </mapper>

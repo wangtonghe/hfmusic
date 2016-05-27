@@ -1,0 +1,79 @@
+.music-sign{
+    padding: 4px 10px;
+}
+.music-name-strle{
+    font-family: "Microsoft Himalaya";
+    font-size: 24px;
+    margin-left: 20px;
+
+}
+a{
+    cursor: pointer;
+}
+
+.music-play-row{
+    margin-top: 15px;
+}
+.music-singer-span{
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.music-albun-span{
+    color: #999;
+}
+#lyric-content{
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+   margin-bottom: 100px;
+}
+.music-play-setup{
+
+    height:28px;
+}
+.navbar-fixed-bottom .row{
+    margin-top: 5px;
+    background-color: #3c3c3c;
+}
+.navbar-fixed-bottom .glyphicon{
+    font-size: 22px;
+    margin-right: 10px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.navbar-fixed-bottom .music-cover{
+  margin-top: 5px;
+}
+.navbar-fixed-bottom .music-name{
+    font-size: 12px;
+    color: #ffffff;
+}
+.navbar-fixed-bottom .music-singername{
+    font-size: 12px;
+    color: #ffffff;
+}
+.navbar-fixed-bottom .thin-col{
+    margin-top: 0px;
+}
+.navbar-fixed-bottom .center{
+    margin-top: 10px;
+}
+.play-progress{
+    height:10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.music-cur-time,.music-total-time{
+    color: #fff;
+    font-size: 12px;
+    margin-left: 0px;
+}
+.lyric-line,.lyric-line-more{
+    margin-top: 3px;
+    margin-bottom: 2px;
+
+}

@@ -1,6 +1,8 @@
 package top.wthfeng.hfmusic.dao.form;
 
 import org.apache.ibatis.annotations.Param;
+import top.wthfeng.hfmusic.model.param.FormCollectParam;
+import top.wthfeng.hfmusic.model.param.MusicUserParam;
 import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewFormDetails;
 import top.wthfeng.hfmusic.model.view.ViewSysLabel;
@@ -17,10 +19,10 @@ public interface FormDAO {
 
     /**
      * 获取歌单详情
-     * @param formId
+     * @param param
      * @return
      */
-    ViewFormDetails getDetails(Integer formId);
+    ViewFormDetails getDetails(Map<String,Integer> param);
 
     /**
      * 根据标签获取歌单(分页)
@@ -56,6 +58,37 @@ public interface FormDAO {
      * @return
      */
     List<ViewSysLabel> getSysLabel();
+
+    /**
+     * 收藏歌单
+     * @param param
+     */
+    void collect(FormCollectParam param);
+
+    /**
+     * 取消收藏歌单
+     * @param param
+     */
+    void cancelCollect(FormCollectParam param);
+
+    /**
+     * 将某歌添加到默认歌单
+     * @param param
+     */
+    void add2DefaultForm(MusicUserParam param);
+
+    /**
+     * 获取默认歌单id
+     * @param userId
+     */
+    int  getDefaultFormId(int userId);
+
+    /**
+     * 根据歌单名获取歌单
+     * @return
+     */
+    List<ViewForm> getByName(@Param(value = "formName") String key);
+
 
 
 }

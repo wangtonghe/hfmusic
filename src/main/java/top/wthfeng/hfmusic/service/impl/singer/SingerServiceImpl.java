@@ -2,13 +2,17 @@ package top.wthfeng.hfmusic.service.impl.singer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.wthfeng.hfmusic.dao.home.HomeDAO;
 import top.wthfeng.hfmusic.dao.singer.SingerDAO;
+import top.wthfeng.hfmusic.model.param.SingerCollectParam;
 import top.wthfeng.hfmusic.model.param.SingerParam;
 import top.wthfeng.hfmusic.model.view.ViewPageList;
 import top.wthfeng.hfmusic.model.view.ViewSinger;
+import top.wthfeng.hfmusic.model.view.ViewSingerMusic;
 import top.wthfeng.hfmusic.service.singer.SingerService;
 import top.wthfeng.hfmusic.util.NumberUtil;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangtonghe
@@ -44,5 +48,25 @@ public class SingerServiceImpl implements SingerService {
         data.setTotalPageNum(NumberUtil.getPageNum(singerDAO.getSingerByCharNum(param),param.getPageSize()));
         return data;
 
+    }
+
+    @Override
+    public ViewSingerMusic getMusicTop50(Map<String,Integer> param ) {
+        return singerDAO.getMusicTop50(param);
+    }
+
+    @Override
+    public void collect(SingerCollectParam param) {
+        if(param.getFlag()==1){
+            singerDAO.collect(param);
+        }else{
+            singerDAO.cancelCollect(param);
+        }
+
+    }
+
+    @Override
+    public List<ViewSinger> getByName(String key) {
+        return singerDAO.getByName(key);
     }
 }

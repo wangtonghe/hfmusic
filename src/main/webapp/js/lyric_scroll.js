@@ -24,7 +24,7 @@ function show(t)//显示歌词
             if(lytime[k]<=t&&t<lytime[k+1])  //正好播放到这一行
             {
                 scrollh=k*25;//让当前的滚动条的顶部改变一行的高度
-                div1.innerHTML+="<font color=red style=font-weight:bold>"+lytext[k]+"</font><br>";
+                div1.innerHTML+="<font color=#00008b style=font-weight:bold>"+lytext[k]+"</font><br>";
             }
             else if(t<lytime[lytime.length-1])//没有播放完
                 div1.innerHTML+=lytext[k]+"<br>";
@@ -49,7 +49,7 @@ function getReady()//在显示歌词前做好准备工作
 {
     var ly=getLy();//得到歌词
     //alert(ly);
-    var arrly=ly.split("]");//转化成数组
+    var arrly=ly.split("$");//转化成数组
     for(var i=0;i<arrly.length;i++) {
         sToArray(arrly[i]);
     }

@@ -1,5 +1,6 @@
 package top.wthfeng.hfmusic.dao.user;
 
+import top.wthfeng.hfmusic.model.form.DefalutForm;
 import top.wthfeng.hfmusic.model.param.RegisterUserParam;
 import top.wthfeng.hfmusic.model.system.SysUser;
 import top.wthfeng.hfmusic.model.user.UserInfo;
@@ -18,39 +19,47 @@ public interface UserDAO {
 	 * 添加用户
 	 * @param param
 	 */
-	public void insertUser(RegisterUserParam param);
+	 void insertUser(RegisterUserParam param);
 	
 	/**
 	 * 更新用户信息
 	 */
-	public void updateUser();
+	 void updateUser();
 	
 	/**
 	 * 查询是否有此用户
 	 * @param username 用户名
 	 * @return 密码
 	 */
-	public UserInfo selectByUserName(String username);
+	 UserInfo selectByUserName(String username);
 
 	/**
 	 * 更新用户令牌
 	 * @param param
      */
-	public void updateTokenAndTime(Map<String,Object> param);
+	 void updateTokenAndTime(Map<String,Object> param);
 
 	/**
 	 * 根据用户id查询用户信息
 	 * @param id
 	 * @return
      */
-	public ViewUserLogin getUserById(Integer id);
+	 ViewUserLogin getUserById(Integer id);
 
 	/**
 	 * 检验accessToken
 	 * @param accessToken
 	 * @return
      */
-	public SysUser checkAccessToken(String accessToken);
+	 SysUser checkAccessToken(String accessToken);
+
+	/**
+	 * 创建用户默认歌单，名称为“我喜欢的歌”
+	 * @param param
+     */
+	 void createDefaultForm(DefalutForm param);
+
+
 	
 
 }

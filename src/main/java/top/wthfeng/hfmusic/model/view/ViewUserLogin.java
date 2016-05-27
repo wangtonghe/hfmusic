@@ -5,6 +5,10 @@ package top.wthfeng.hfmusic.model.view;
  */
 public class ViewUserLogin {
 
+    /**
+     * 用户id
+     */
+    private int userId;
     private String username;
     private String nickName;
     private String accessToken;
@@ -15,6 +19,13 @@ public class ViewUserLogin {
     private Byte starNum;
     private String headPortrait;
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUsername() {
         return username;

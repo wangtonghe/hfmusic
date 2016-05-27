@@ -1,5 +1,8 @@
 package top.wthfeng.hfmusic.dao.music;
 
+import org.apache.ibatis.annotations.Param;
+import top.wthfeng.hfmusic.model.music.SimpleMusic;
+import top.wthfeng.hfmusic.model.param.MusicUserParam;
 import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewHomeMusic;
 import top.wthfeng.hfmusic.model.view.ViewMusicDetails;
@@ -39,6 +42,27 @@ public interface MusicDAO {
      * @return
      */
     ViewMusicDetails details(int musicId);
+
+    /**
+     * 喜欢歌曲
+     * @param param
+     */
+    void likeMusic(MusicUserParam param);
+
+    /**
+     * 取消喜欢歌曲
+     * @param param
+     */
+    void cancelLikeMusic(MusicUserParam param);
+
+    /**
+     * 根据关键字获取歌曲
+     * @param key
+     * @return
+     */
+    List<SimpleMusic> getByMusicName(@Param(value = "musicName") String key);
+
+
 
 
 

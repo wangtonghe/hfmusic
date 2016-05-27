@@ -12,6 +12,7 @@ public class ViewMusicDetails {
     private String cover;
     private String singer;
     private int singerId;
+    private String singerName;
     private String album;
     /**
      * 歌曲url
@@ -84,5 +85,13 @@ public class ViewMusicDetails {
 
     public void setMusicName(String musicName) {
         this.musicName = musicName;
+    }
+
+    public String getSingerName() {
+        return singerName;
+    }
+
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
     }
 }

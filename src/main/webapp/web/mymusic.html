@@ -21,26 +21,7 @@
 <div class="container-fluid">
 
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                </button>
-                <a class="navbar-brand home-title " href="index.html">和风音乐</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="home-nav"><a href="index.html" >首页</a></li>
-                    <li class="home-nav"><a  href="form.html">歌单</a></li>
-                    <li class="home-nav"><a  href="singer.html">歌手</a></li>
-                    <li class="home-nav active"><a  href="mymusic.html">我的</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a role="button" class="login">登录<span class="sr-only">(current)</span></a></li>
-                    <li><a role="button" class="register">注册</a></li>
-                    <li><a href="about.html">关于</a></li>
-                </ul>
-            </div>
-        </div>
+
     </nav>
     </div>
 <div class="container">
@@ -82,54 +63,60 @@
         <div class="col-sm-9 col-md-10 col-lg-10  main">
             <div class="tab-content">
                 <div class="tab-pane " id="form-pane">
-                    <div class="row" role="form">
-                        <div class="col-md-3">
-                            <img class="img-rounded form-cover" width="200px" height="200px"/>
+                    <div class="row margin-top-fill">
+                        <div class="col-md-3 col-md-offset-1">
+                            <img class="img-rounded form-cover" width="200px" height="200px"   />
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="row">
-                                <span class="form-title"></span>
+                                <button class="btn btn-danger music-sign">歌单</button>&nbsp;&nbsp; <span class="form-title"></span>
+                                <input type="hidden" class="form-id">
                             </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <img class="img-rounded form-author-img" width="40" height="40"/>
-                                    <label class="form-author">wthfeng</label><label
-                                        class="form-date">2015-12-12</label>
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="btn">收藏</button>
-                                    <button class="btn">分享</button>
+                            <div class="row row-date">
+                                <div class="col-md-6 margin-top">
+                                    <img class="img-rounded form-author-img" width="40px" height="40px" />
+                                    <a class="form-author"></a><label class="form-date"></label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="form-label"></label>
+                            <div class="row row-play">
+                                <button class="btn form-btn-play play-all"><span class="glyphicon glyphicon-play-circle form-all-play"></span>&nbsp;播放全部</button>
+                                <button class="btn form-btn-play play-collect "><span class="glyphicon glyphicon-bookmark "></span>&nbsp;收藏(0)次</button>
+                                <button class="btn form-btn-play"><span class="glyphicon glyphicon-send"></span>&nbsp;分享</button>
                             </div>
-                            <div class="row">
+                            <div class="row row-label">
+                                <span >标签：</span><span class="form-label"></span>
+                            </div>
+                            <div class="row row-info">
                                 <div class="col-md-8">
-                <textarea class="form-control form-info" rows="5">
-                </textarea>
+                                    <div class="form-group ">
+                                        <span class="col-md-3">简介：</span>
+                                        <div class="col-md-8">
+                                            <div class=" form-info" ></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr/>
                     <div class="row">
-                        <div class="col-sm-8">
-                            <div class="col-sm-2">
-                                <span>歌曲列表</span>
+                        <div class="col-md-8 col-md-offset-1">
+                            <div class="col-md-3">
+                                <span  >歌曲列表</span>
                                 <span class="glyphicon glyphicon-play-circle"></span>
+                                <audio class="audio-play2" />
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-md-push-4 col-md-2">
                                 共<label class="form-details-totalNum"></label>首歌
                             </div>
+
                             <table class="table table-bordered table-striped table-hover table-condensed table-responsive">
                                 <thead>
                                 <tr>
-                                    <td></td>
+                                    <td>操作</td>
                                     <td>歌曲名</td>
                                     <td>歌手</td>
                                     <td>专辑</td>
-                                    <td>操作</td>
                                 </tr>
                                 </thead>
                                 <tbody class="form-contant">

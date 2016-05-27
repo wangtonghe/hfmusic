@@ -30,6 +30,9 @@
     position: relative;
     width: 40px;
 }
+.main{
+    border-left: solid 1px #ccc;
+}
 .my-form-title{
     color: #000;
     font-size: 14px;
@@ -65,11 +68,56 @@
 .hr-color{
     height:10px;
     border:none;
-    border-top:5px solid #FF3333;
+    border-top:2px solid #FF3333;
+    margin-top: 1px;
 }
 .hr{
     height:10px;
     border:none;
-    border-top:2px solid #9d9d9d;
+    border-top:1px solid #9d9d9d;
 
+}
+.form-title{
+    font-size: 20px;
+    font-family: "Microsoft YaHei UI";
+}
+.glyphicon{
+    cursor: pointer;
+}
+
+a{
+    cursor: pointer;
+}
+.form-date{
+    margin-left: 20px;
+    color:#999;
+    font-family: Arial;
+}
+.margin-top{
+    margin-top: 10px;
+}
+.row-label{
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+}
+.row-info{
+    margin-left: -30px;
+}
+.row-play{
+    margin-top: 15px;
+}
+.form-all-play{
+    color:red;
+}
+.form-info{
+    font-family: "Microsoft YaHei UI";
+    color:#000;
+    margin-left: -15px;
+}
+.form-label span{
+    margin-right: 15px;
+}
+.music_liked{
+    color:red;
 }

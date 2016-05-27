@@ -53,6 +53,7 @@ public class UserLoginController {
             Date loginTime = new Date();
             userService.updateTokenAndTime(user.getUserId(), accessToken, loginTime);
             ViewUserLogin data = new ViewUserLogin();
+            data.setUserId(user.getUserId());
             data.setAccessToken(accessToken);
             data.setNickName(user.getNickName());
             data.setHeadPortrait(user.getHeadPortrait());

@@ -1,8 +1,10 @@
 package top.wthfeng.hfmusic.service.impl.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.wthfeng.hfmusic.dao.user.UserDAO;
+import top.wthfeng.hfmusic.model.form.DefalutForm;
 import top.wthfeng.hfmusic.model.param.RegisterUserParam;
 import top.wthfeng.hfmusic.model.system.SysUser;
 import top.wthfeng.hfmusic.service.user.UserService;
@@ -20,6 +22,13 @@ import java.util.Map;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+	@Value("${configure.hfmusic.site.form.defalutcover}")
+	private String DEFAULT_FORMCOVER;
+	@Value("${configure.hfmusic.site.form.defaultname}")
+	private String DEFAULT_FORMNAME;
+
+
+
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -35,6 +44,14 @@ public class UserServiceImpl implements UserService {
 	public Integer register(RegisterUserParam param) throws Exception{
 		if(userDAO.selectByUserName(param.getUsername())==null) {
 			userDAO.insertUser(param);
+			DefalutForm defaultForm = new DefalutForm();
+			defaultForm.setCreateTime(new Date());
+			defaultForm.setUserId(param.getUserId());
+			defaultForm.setCover(DEFAULT_FORMCOVER);
+			defaultForm.setFormName(DEFAULT_FORMNAME);
+			defaultForm.setIsSystem(0);
+			defaultForm.setOnline(0);
+			userDAO.createDefaultForm(defaultForm);
 			return  0;
 		}else return -1;
 		

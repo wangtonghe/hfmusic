@@ -1,6 +1,10 @@
 package top.wthfeng.hfmusic.service.music;
 
+import top.wthfeng.hfmusic.model.music.SimpleMusic;
+import top.wthfeng.hfmusic.model.param.MusicUserParam;
 import top.wthfeng.hfmusic.model.view.ViewMusicDetails;
+
+import java.util.List;
 
 /**
  * @author wangtonghe
@@ -15,6 +19,25 @@ public interface MusicService {
      * @return
      */
     ViewMusicDetails details(int musicId)throws Exception;
+
+    /**
+     * 喜欢或取消喜欢歌曲
+     * @param param
+     * @throws Exception
+     */
+    void likeMusic(MusicUserParam param)throws Exception;
+
+    /**
+     * 根据关键字查询歌曲
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    List<SimpleMusic> getByMusicName(String key)throws Exception;
+
+
+
+
 
 
 }

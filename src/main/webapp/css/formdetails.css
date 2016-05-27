@@ -1,6 +1,75 @@
 .form-title{
-    font-size: large;
+    font-size: 20px;
+    font-family: "Microsoft YaHei UI";
 }
 .glyphicon{
     cursor: pointer;
+}
+
+a{
+    cursor: pointer;
+}
+.form-date{
+    margin-left: 20px;
+    color:#999;
+    font-family: Arial;
+}
+.margin-top{
+    margin-top: 10px;
+}
+.row-label{
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+}
+.row-info{
+    margin-left: -30px;
+}
+.row-play{
+    margin-top: 15px;
+}
+.form-all-play{
+    color:red;
+
+
+}
+.form-info{
+    font-family: "Microsoft YaHei UI";
+    color:#000;
+}
+.form-label{
+
+}
+.form-label .f-tag{
+    position: relative;
+    zoom: 1;
+    padding: 0 3px 0 13px;
+    background-position: 0 0;
+    height: 22px;
+    color:#999;
+    line-height: 22px;
+    border-radius: 10px;
+}
+.form-btn-play{
+    background-color: #ffffff;
+    border: solid 1px #ccc;
+    padding: 0px 5px 3px 8px ;
+    margin-left: 25px;
+
+}
+.music-sign{
+    padding: 4px 10px;
+}
+
+button span{
+    margin-top: 10px;
+    color:#000;
+    font-size: 10px;
+
+}
+.form-contant tr td{
+    cursor: pointer;
+}
+.music_liked{
+    color:red;
 }

@@ -11,30 +11,36 @@
         <result column="info" property="info"/>
         <result column="createTime" property="createTime"/>
         <result column="creator" property="creator"/>
-        <result column="portrait" property="portrait"/>
+        <result column="headPortrait" property="headPortrait"/>
         <result column="cover" property="cover"/>
         <result column="collectNum" property="collectNum"/>
+        <result column="isCollect" property="isCollect"/>
         <result column="musicNum" property="musicNum"/>
-        <collection property="labels" ofType="java.lang.String">
-            <result column="label"/>
+        <collection property="labels" ofType="top.wthfeng.hfmusic.model.form.FormLabel">
+            <id column="labelId" property="labelId"/>
+            <result column="labelName" property="labelName"/>
         </collection>
         <collection property="musicList" ofType="top.wthfeng.hfmusic.model.music.SimpleMusic">
-            <result property="musicId" column="musicId"/>
+            <id property="musicId" column="musicId"/>
             <result property="musicName" column="musicName"/>
+            <result property="singerId" column="singerId"/>
             <result property="album" column="album"/>
             <result property="singerName" column="singerName"/>
             <result property="musicUrl" column="musicUrl"/>
+            <result property="isLike" column="isLike"/>
         </collection>
     </resultMap>
 
     <!--获取歌单详情-->
-    <select id="getDetails" parameterType="java.lang.Integer"
+    <select id="getDetails" parameterType="java.util.Map"
             resultMap="getDetailsMap">
-
-        SELECT f.id as formId,f.formName,f.info ,sl.labelName label,f.createTime,u.headPortrait portrait, portrait,f.cover,
-  u.nickName creator,m.id musicId,
+        SELECT f.id as formId,f.formName,f.info,
+        sl.id as labelId, sl.labelName labelName,f.createTime,u.headPortrait,f.cover,
+  u.nickName creator,m.id musicId,m.name musicName,s.name singerName,s.id singerId,
+  m.album,m.url musicUrl,
  (select count(fc.id) from form_collect fc  where fc.formId=f.id) as  collectNum,
- (select count(fd.id) from form_details fd where fd.formId=f.id) as musicNum,
+ if(fc.id is null,0,1)as isCollect,
+ if(ml.id is null,0,1)as isLike
  from form f
   left join form_details fd on f.id=fd.formId
   LEFT JOIN music m on fd.musicId=m.id
@@ -42,6 +48,8 @@
  left join syslabel sl on sl.id=fl.labelId
   left join user u on f.userId=u.id
  left join singer s on m.singerId=s.id
+left join form_collect fc on f.id=fc.formId and fc.userId=#{userId}
+LEFT join music_like ml on m.id=ml.musicId and ml.userId=#{userId}
  where f.id=#{formId}
     </select>
 
@@ -104,4 +112,34 @@
     <select id="getSysLabel" resultType="top.wthfeng.hfmusic.model.view.ViewSysLabel">
         select s.id labelId,s.labelName from syslabel s
     </select>
+
+    <!--收藏歌单-->
+    <insert id="collect" parameterType="top.wthfeng.hfmusic.model.param.FormCollectParam">
+        INSERT INTO  form_collect(formId,userId,createTime) VALUES (#{formId},#{userId},#{createTime})
+    </insert>
+    <!--取消收藏歌单-->
+    <delete id="cancelCollect" parameterType="top.wthfeng.hfmusic.model.param.FormCollectParam">
+        delete from form_collect fc where fc.userId=#{userId} and fc.formId=#{formId}
+    </delete>
+
+    <!--获取默认歌单id-->
+    <select id="getDefaultFormId" parameterType="int" resultType="int">
+        select min(f.id) from form f where f.userId=#{userId}
+    </select>
+
+    <!--添加到默认歌单-->
+    <insert id="add2DefaultForm" parameterType="top.wthfeng.hfmusic.model.param.MusicUserParam">
+        insert into form_details(formId,musicId)
+         VALUES (#{formId},#{musicId})
+    </insert>
+
+    <!--根据名字获取歌单-->
+    <select id="getByName" parameterType="java.lang.String" resultType="top.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT f.id formId,f.formName `name`,f.cover,u.nickName creator
+        from form f
+        left join  `user` u on  f.userId=u.id
+        <bind name="nameLike" value="formName+'%' "/>
+        where f.formName like #{nameLike}
+    </select>
+
 </mapper>

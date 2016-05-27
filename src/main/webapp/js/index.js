@@ -4,6 +4,25 @@
  */
 $(function () {
 
+    $(".navbar-static-top").load("nav.html",function(){  //加载导航栏
+         $(this).find("#navbar ul:first-child li:first-child").addClass("active");
+       var nav_user= $(this).find(".navbar-username");
+        var nav_login=$(this).find(".navbar-login");
+        if(sessionStorage.getItem("hfmusic_username")!=undefined){
+            nav_login.css("display","none");
+            nav_user.find("img").attr("src",sessionStorage.getItem("hfmusic_username_img"));
+            nav_user.find(".login-nav-name").text(sessionStorage.getItem("hfmusic_username"));
+        }else{
+            nav_user.css("display","none");
+        }
+    });
+
+    var act =$(".navbar-static-top").find("#navbar");
+
+    act.addClass("active");
+
+
+
     initData();
     $(".login").on("click", function () {
         $("#signin").modal({

@@ -3,6 +3,8 @@
  */
 $(function(){
 
+
+
     $(".login-register").load("login_register.html");
 
 
@@ -25,6 +27,10 @@ $(function(){
         });
     });
 
+    $(".login-register").on("click",".login-nav-img,.login-nav-name", function () {
+        location.href=mymusic.html;
+    });
+
     //登录
     $(".login-register").on("click","#login_btn", function () {
         var username = $("#login_name").val();
@@ -40,14 +46,21 @@ $(function(){
         }
         $.post("/hfmusic/site/user/login", {username: username, password: password}, function (data) {
             if (data.code == 0) {
-                localStorage.setItem("hfmusic_accessToken",data.data.accessToken);
+                var userinfo = data.data;
+                localStorage.setItem("hfmusic_accessToken",userinfo.accessToken);
                 alert($(".login-register .rememberMe").attr("checked"));
                 if($(".login-register .rememberMe").attr("checked")){
                     localStorage.setItem("hfmusic_rememberMe",$(".login-register #login_name").val());
                 }
                 $("#signin").modal("hide");
-
-
+                 var nav = $(".navbar-static-top");
+                nav.find(".navbar-login").css("display","none");
+                nav.find(".navbar-username").css("display","block");
+                nav.find(".navbar-username img").attr("src",userinfo.headPortrait);
+                nav.find(".navbar-username .login-nav-name").text(userinfo.nickName);
+                sessionStorage.setItem("hfmusic_username",userinfo.nickName);
+                sessionStorage.setItem("hfmusic_username_img",userinfo.headPortrait);
+                sessionStorage.setItem("hfmusic_userId",userinfo.userId);
             }
             else {
                 alert(data.data);
@@ -86,5 +99,33 @@ $(function(){
         }
     });
 
+
+   $(".navbar-static-top ").on("click", ".navbar-search .glyphicon-search",function () {
+       var key =$(".navbar-search input").val();
+       location.href="search.html?key="+key;
+
+   });
+    $(".navbar-static-top").on("keypress",".navbar-search input",function(e) {
+        // 回车键事件
+        if(e.which == 13) {
+            var key =$(".navbar-search input").val();
+            location.href="search.html?key="+key;
+        }
+    });
+
 });
+
+//时间转化
+function unix_to_datetime(unix) {
+    var date2 = new Date(parseInt(unix)).toLocaleString().substring(0,9).replace("/g","-");
+    //return now
+    return date2;
+}
+
+function array2str(array){
+    var str;
+    for(var i=0;i<array.length;i++){
+        str+=array[i];
+    }
+}
 

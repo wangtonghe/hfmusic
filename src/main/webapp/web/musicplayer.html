@@ -14,54 +14,75 @@
 <body>
 
 <div class="container-fluid">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                </button>
-                <a class="navbar-brand home-title " href="index.html">和风音乐</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="home-nav"><a href="index.html" >首页</a></li>
-                    <li class="home-nav"><a  href="form.html">歌单</a></li>
-                    <li class="home-nav"><a  href="singer.html">歌手</a></li>
-                    <li class="home-nav"><a  href="mymusic.html">我的</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a role="button" class="login">登录<span class="sr-only">(current)</span></a></li>
-                    <li><a role="button" class="register">注册</a></li>
-                    <li><a href="about.html">关于</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    </div>
+    <nav class="navbar navbar-default navbar-static-top"></nav>
+</div>
 <div class="container">
 
     <div class="row margin-top-fill">
-       <div class=" col-md-offset-2 col-md-2">
-           <img class="img-circle music-cover" width="130px" height="130px" />
+       <div class=" col-md-offset-1 col-md-2">
+           <img class="img-circle music-cover" width="200px" height="200px" />
        </div>
-        <div class="col-md-5">
-            <label>歌曲：</label><label class="music-name"></label><br/>
-            <label>歌手：</label><label class="music-singername"></label><br/>
-            <label>所属专辑：</label><label class="music-album"></label>
+        <div class="col-md-offset-1 col-md-4">
+            <button class="btn btn-danger music-sign">单曲</button><label class="music-name music-name-strle"></label><br/>
+            <span class="music-singer-span">歌手：</span><a class="music-singername"></a><br/>
+            <span class="music-albun-span">所属专辑：</span><a class="music-album"></a>
+            <div class="row music-play-row">
+                <div class="col-md-3">
+                    <button class="btn btn-primary music-play"><span class="glyphicon glyphicon-play-circle"></span>&nbsp;播放</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>&nbsp;收藏</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-default"><span class="glyphicon glyphicon-share"></span>&nbsp;分享</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="music-margin">
-        <div class="col-md-offset-5 col-md-3">
-            <button class="btn btn-primary music-play">播放</button>
-        </div>
         <audio id="music_audio" ></audio>
-
     </div>
-    <div class="row ">
+    <div class="row lyric-row">
         <div class="col-md-offset-4 col-md-8" id="lyric-content">
 
         </div>
 
     </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid music-play-setup">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-2 center">
+                   <span class="glyphicon glyphicon-step-backward"></span>
+                    <span class="glyphicon glyphicon-play music-play "></span>
+                    <span class="glyphicon glyphicon-step-forward "></span>
+                </div>
+                <div class=" col-md-6">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img class="img-rounded music-cover" width="30px" height="30px" />
+                        </div>
+                        <div class="col-md-2 thin-col">
+                                <a class="music-name"></a><br/>
+                                <a class="music-singername "></a>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="progress play-progress">
+                                <div class="progress-bar progress-bar-danger " style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 thin-col thin-col">
+                            <span class="music-cur-time">00:00&nbsp;/&nbsp;</span><span class="music-total-time">00:00</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
 
 
 
@@ -69,9 +90,10 @@
 
 <script src="../js/jquery-2.1.4.js" type="text/javascript"></script>
 <script src="../js/bootstrap.js" type="text/javascript"></script>
+<script src="../js/params.js"></script>
 <script src="../js/musicplayer.js"></script>
 <script src="../js/common.js"></script>
-<script src="../js/lyric_scroll.js"></script>
+<!--<script src="../js/lyric_scroll.js"></script>-->
 </body>
 
 </html>

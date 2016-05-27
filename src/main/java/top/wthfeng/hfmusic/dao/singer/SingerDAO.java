@@ -1,9 +1,13 @@
 package top.wthfeng.hfmusic.dao.singer;
 
+import org.apache.ibatis.annotations.Param;
+import top.wthfeng.hfmusic.model.param.SingerCollectParam;
 import top.wthfeng.hfmusic.model.param.SingerParam;
 import top.wthfeng.hfmusic.model.view.ViewSinger;
+import top.wthfeng.hfmusic.model.view.ViewSingerMusic;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangtonghe
@@ -45,6 +49,32 @@ public interface SingerDAO {
      * @return
      */
     List<ViewSinger> getSingerHot(int num);
+
+    /**
+     * 获取某歌手50首歌曲
+     * @param param
+     * @return
+     */
+    ViewSingerMusic getMusicTop50(Map<String,Integer> param);
+
+    /**
+     * 收藏歌手
+     * @param param
+     */
+    void collect(SingerCollectParam param);
+
+    /**
+     * 取消收藏歌手
+     * @param param
+     */
+    void cancelCollect(SingerCollectParam param);
+
+    /**
+     * 根据名字获取歌手
+     * @param key
+     * @return
+     */
+    List<ViewSinger> getByName(@Param(value = "singerName") String key);
 
 
 }

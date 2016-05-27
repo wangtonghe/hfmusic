@@ -12,3 +12,17 @@
     margin-left: -15px;
     margin-right: -15px;
 }
+.login-nav-img{
+    margin-top: 5px;
+    cursor: pointer;
+}
+.login-nav-name{
+    margin-left: 5px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+.navbar-search{
+    margin-top: 10px;
+    margin-left: 300px;
+}
+

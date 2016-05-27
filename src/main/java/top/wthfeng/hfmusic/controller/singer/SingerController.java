@@ -3,6 +3,8 @@ package top.wthfeng.hfmusic.controller.singer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import top.wthfeng.hfmusic.context.UserContext;
+import top.wthfeng.hfmusic.model.param.SingerCollectParam;
 import top.wthfeng.hfmusic.model.param.SingerParam;
 import top.wthfeng.hfmusic.model.view.ViewPageList;
 import top.wthfeng.hfmusic.model.view.ViewSinger;
@@ -51,7 +53,45 @@ public class SingerController {
         result.put("code",0);
         result.put("data",list);
         return result;
+    }
 
+    /**
+     * 收藏、取消收藏歌手
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/collect",method = RequestMethod.POST)
+    public Map<String,Object> collect(SingerCollectParam param)throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        int userId=0;
+        if(UserContext.getUser()!=null){
+            userId=UserContext.getUser().getUserId();
+        }
+        param.setUserId(userId);
+        singerService.collect(param);
+        result.put("code",0);
+        result.put("data",null);
+        return result;
 
+    }
+
+    /**
+     * 获取某歌手50首歌曲
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getMusicTop50",method = RequestMethod.GET)
+    public Map<String,Object> getMusicTop50(int singerId )throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        Map<String,Integer> param = new HashMap<>();
+        int userId=0;
+        if(UserContext.getUser()!=null){
+            userId=UserContext.getUser().getUserId();
+        }
+        param.put("singerId",singerId);
+        param.put("userId",userId);
+        result.put("code",0);
+        result.put("data",singerService.getMusicTop50(param));
+        return result;
     }
 }

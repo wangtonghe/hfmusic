@@ -1,5 +1,6 @@
 package top.wthfeng.hfmusic.service.form;
 
+import top.wthfeng.hfmusic.model.param.FormCollectParam;
 import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewFormDetails;
 import top.wthfeng.hfmusic.model.view.ViewPageList;
@@ -16,10 +17,10 @@ import java.util.Map;
 public interface FormService {
     /**
      * 获取歌单详情
-     * @param formId
+     * @param param
      * @return
      */
-    ViewFormDetails getDetails(Integer formId)throws Exception;
+    ViewFormDetails getDetails(Map<String,Integer> param)throws Exception;
 
     /**
      * 根据标签获取歌单
@@ -40,6 +41,18 @@ public interface FormService {
      * @return
      */
     List<ViewSysLabel> getSysLabel()throws Exception;
+
+    /**
+     * 收藏歌单
+     * @param param
+     */
+    void collect(FormCollectParam param);
+
+    /**
+     * 根据歌单名获取歌单
+     * @return
+     */
+    List<ViewForm> getByName(String key);
 
 
 

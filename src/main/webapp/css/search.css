@@ -1,0 +1,12 @@
+.margin-top{
+    margin-top: 50px;
+}
+.tab-pane  a{
+    cursor: pointer;
+}
+.tab-pane img{
+    margin-left: 4px;
+    margin-top: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}

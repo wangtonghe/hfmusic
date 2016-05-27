@@ -3,8 +3,20 @@
  */
 
 $(function(){
-    var area = 1;
-    var sex=0;
+
+    $(".navbar-static-top").load("nav.html",function(){  //加载导航栏
+        $(this).find("#navbar ul:eq(0) li:eq(2)").addClass("active");
+        var nav_user= $(this).find(".navbar-username");
+        var nav_login=$(this).find(".navbar-login");
+        if(sessionStorage.getItem("hfmusic_username")!=undefined){
+            nav_login.css("display","none");
+            nav_user.find("img").attr("src",sessionStorage.getItem("hfmusic_username_img"));
+            nav_user.find(".login-nav-name").text(sessionStorage.getItem("hfmusic_username"));
+        }else{
+            nav_user.css("display","none");
+        }
+
+    });
     initAtoZ();
 
 
@@ -16,6 +28,11 @@ $(function(){
        }
         var character = $(this).text();
         initSinger(character,1);
+    });
+
+    $(".singer").on("click","div img,div home-formname",function(){
+        var singerId=$(this).siblings(":input").val();
+        window.location.href="singerdetails.html?singerId="+singerId;
     });
 
 
@@ -38,7 +55,7 @@ function initSinger(character,pageNum){
                 if(data.code==0){
                     $(".singer").html("");
                     for(var i=0;i< d.list.length;i++){
-                        var row = "<div class=' col-lg-2 col-md-4 col-sm-4 singer-div ' ><img  src='" + d.list[i].portrait + "' class='img-rounded hand' width='140' height='140'>" +
+                        var row = "<div class=' col-lg-2 col-md-4 col-sm-4 singer-div ' ><input type='hidden' value='"+ d.list[i].singerId+"' /><img  src='" + d.list[i].portrait + "' class='img-rounded hand' width='140' height='140'>" +
                             "<h6 class='home-formname'><a class='hand'>" + d.list[i].singerName +
                             "</a></h6></div>";
                         $(".singer").append(row);

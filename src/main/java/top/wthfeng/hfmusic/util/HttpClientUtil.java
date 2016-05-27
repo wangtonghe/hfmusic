@@ -34,6 +34,7 @@ public class HttpClientUtil {
         httpURLConnection.setRequestProperty("Accept-Charset", charset);
         httpURLConnection.setRequestProperty("Content-Type", "text/plain");
 
+
         InputStream inputStream = null;
         InputStreamReader inputStreamReader = null;
         BufferedReader reader = null;
@@ -46,11 +47,12 @@ public class HttpClientUtil {
 
         try {
             inputStream = httpURLConnection.getInputStream();
-            inputStreamReader = new InputStreamReader(inputStream);
+            inputStreamReader = new InputStreamReader(inputStream,charset);
             reader = new BufferedReader(inputStreamReader);
 
             while ((tempLine = reader.readLine()) != null) {
                 resultBuffer.append(tempLine);
+                resultBuffer.append("$");
             }
 
         } finally {

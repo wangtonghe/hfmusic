@@ -1,0 +1,33 @@
+.singer-cover {
+    position: relative;
+    width: 640px;
+    height:300px;
+}
+.singer-name {
+    position: absolute;
+    top: 253px;
+    left: 34px;
+    width: 605px;
+    height: 34px;
+    line-height: 28px;
+    font-weight: normal;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 1px 0 0 rgba(0,0,0,0.8);
+}
+.singer-collect{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 76px;
+    height: 32px;
+    background-color: #888;
+    color: #fff;
+}
+.row{
+    margin-top: 15px;
+}
+.music-contant tr td .glyphicon{
+    cursor: pointer;
+}
+

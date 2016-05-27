@@ -3,6 +3,7 @@ package top.wthfeng.hfmusic.controller.music;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import top.wthfeng.hfmusic.model.param.MusicUserParam;
 import top.wthfeng.hfmusic.service.music.MusicService;
 
 import javax.annotation.Resource;
@@ -33,4 +34,20 @@ public class MusicController {
         result.put("data",musicService.details(musicId));
         return result;
     }
+
+    /**
+     * 喜欢歌曲
+     * @param param
+     * @return
+     */
+    @RequestMapping(value = "/likeMusic",method = RequestMethod.POST)
+    public Map<String,Object> likeMusic(MusicUserParam param)throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        musicService.likeMusic(param);
+        result.put("code",0);
+        result.put("data",null);
+        return result;
+    }
+
+
 }
