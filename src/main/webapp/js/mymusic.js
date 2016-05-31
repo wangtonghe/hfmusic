@@ -1,6 +1,9 @@
 /**
  * Created by wangtonghe on 2016/5/15.
  */
+var selected_labels=new Array();
+var selected_ids=new Array();
+
 $(function(){
 
     $(".navbar-static-top").load("nav.html",function(){  //加载导航栏
@@ -16,10 +19,32 @@ $(function(){
         }
 
     });
+    $(".file-input").fileinput(
+        {
+            uploadUrl:rootUrl,
+            language:"zh",
+            uploadAsync: true,
+            allowedFileExtensions:['jpg',  'png', 'lrc','mp3','mp4'],
+            showPreview:true,
+            showRemove:false
+        }
+    );
 
     getMyForm();  //加载我的歌单
     getCollectForm();  //加载我收藏的歌单
     getCollectSinger();//加载收藏的歌手
+    initMy(); //初始化标签
+
+
+
+    //添加歌单封面上传成功的回调函数
+    $('#my_create-formCover').on('fileuploaded', function(event, data, previewId, index) {
+        var result =data.response;
+        if(result.code==0){
+            $("#my_create-coverUrl").val(result.data.fileUrl);
+
+        }else alert(result.data.error);
+    });
 
     $(".myul").on("click",".my-form-li",function(){  //点击左侧菜单
       var formId=  $(this).attr("id");
@@ -75,12 +100,49 @@ $(function(){
 
 
 
+    $(".select-labels").on("click",".form-label-text",function(){
+        var span=$(this);
+        if($(this).prev("span").hasClass("glyphicon")){
+            span.prev("span").remove();
+        }else {
+            var length = $(".select-labels").find(".labels-list span").length;
+            if (length < 3) {
+                var span2 = "<span class='glyphicon glyphicon-ok'></span>";
+                var idflag="id"+span.next("input").val();
+                selected_labels.push(span.text());
+                selected_ids.push(span.next("input").val());
+                span.addClass("selected").addClass(idflag);
+                span.before(span2);
+            }else{
+                alert("最多选择3个标签");
+            }
+        }
+    });
+
+    $(".select-labels").on("click",".save",function(e){
+
+        for(var i=0;i<selected_labels.length;i++){
+            var span="<span class='margin-right'>"+selected_labels[i]+"</span>";
+            $(".select-label-div").append(span);
+        }
+        $('[data-toggle=popover]').trigger("click");
+        return false;
+
+    });
 
 
-
-
-
-
+    $("#my_create_save").on("click",function(){  //创建歌单保存
+        var formname=$("#my_create-formName").val();
+        var f_labels = selected_ids.join(",");
+        var coverUrl=$("#my_create-coverUrl").val();
+        var info =$("#my_create-forminfo").val();
+        var userId=sessionStorage.getItem("hfmusic_userId");
+        $.post("/hfmusic/site/form/create",{formName:formname,cover:coverUrl,info:info,formLabels:f_labels,userId:userId}, function (data) {
+            if(data.code==0){
+                alert("创建成功！");
+            }
+        });
+    });
 });
 
 //显示我的歌单
@@ -194,5 +256,28 @@ function  initFormDetails(formid){
                 }
             }
         }
+    });
+}
+
+function initMy(){
+    var form_type_comtent=$("<div><div class='row labels-list'></div><div class='row labels-btn'></div></div>");
+    $.get("/hfmusic/site/form/getSysLabel",{},function(data){
+        if(data.code!=0){
+            return;
+        }
+        var list =data.data;
+        for(var i=0;i<list.length;i++){
+            var label="<div class='col-sm-4' ><a  class='form-label-text'>"+list[i].labelName+"</a><input type='hidden' value='"+list[i].labelId+"'></div>";
+            form_type_comtent.find(".labels-list").append(label);
+        }
+        var row="<div class='col-sm-offset-2 col-sm-2'><button class='btn btn-info btn-sm save'>保存</button></div><div class='col-sm-offset-1 col-sm-2'><button class='btn btn-default btn-sm cancel'>取消</button></div>";
+        form_type_comtent.find(".labels-btn").append(row);
+    },"json");
+
+    $('[data-toggle=popover]').popover({
+        content:form_type_comtent,
+        placement:"bottom",
+        html:true,
+        trigger:"click focus"
     });
 }

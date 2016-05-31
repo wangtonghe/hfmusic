@@ -132,8 +132,10 @@ function  initFormDetails(formid){
                 }
                 $(".form-label").html("").append(f_label);
 
+
                 var musics=details.musicList;
                 $(".form-details-totalNum").text(musics.length);
+
                 for(var i=0;i<musics.length;i++){
                     var islikespan="";
                     if(musics[i].isLike==1){

@@ -1,10 +1,13 @@
 package top.wthfeng.hfmusic.dao.form;
 
 import org.apache.ibatis.annotations.Param;
+import top.wthfeng.hfmusic.model.param.AddFormParam;
 import top.wthfeng.hfmusic.model.param.FormCollectParam;
+import top.wthfeng.hfmusic.model.param.FormParam;
 import top.wthfeng.hfmusic.model.param.MusicUserParam;
 import top.wthfeng.hfmusic.model.view.ViewForm;
 import top.wthfeng.hfmusic.model.view.ViewFormDetails;
+import top.wthfeng.hfmusic.model.view.ViewMyForm;
 import top.wthfeng.hfmusic.model.view.ViewSysLabel;
 
 import java.util.List;
@@ -78,6 +81,12 @@ public interface FormDAO {
     void add2DefaultForm(MusicUserParam param);
 
     /**
+     * 将某歌从默认歌单中删除
+     * @param param
+     */
+    void deleteDefaultForm(MusicUserParam param);
+
+    /**
      * 获取默认歌单id
      * @param userId
      */
@@ -88,6 +97,35 @@ public interface FormDAO {
      * @return
      */
     List<ViewForm> getByName(@Param(value = "formName") String key);
+
+    /**
+     * 创建歌单
+     * @param param
+     * @throws Exception
+     */
+    void create(FormParam param)throws Exception;
+
+    /**
+     * 表单添加标签
+     * @param param
+     * @throws Exception
+     */
+    void insertLabels(FormParam param)throws Exception;
+
+    /**
+     * 获取我的歌单
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<ViewMyForm> listMyForm(int userId)throws Exception;
+
+    /**
+     * 添加歌曲到歌单
+     * @param param
+     * @throws Exception
+     */
+    void addMyForm(AddFormParam param)throws Exception;
 
 
 

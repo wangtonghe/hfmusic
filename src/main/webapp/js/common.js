@@ -1,6 +1,7 @@
 /**
  * Created by wangtonghe on 2016/5/15.
  */
+var rootUrl = "http://wthfeng.top:8080/hfuploadserver/server/upload/file";
 $(function(){
 
 

@@ -37,16 +37,11 @@ public class MusicServiceImpl implements MusicService {
         param.setFormId(formId);
         if(param.getFlag()==0){  //取消喜欢
             musicDAO.cancelLikeMusic(param);
+            formDAO.deleteDefaultForm(param);
         }else {
             musicDAO.likeMusic(param);
             formDAO.add2DefaultForm(param);
         }
-
-
-
-
-
-
     }
 
     @Override

@@ -38,3 +38,9 @@ a:link{
     color: red;
     width: 3px;
 }
+.list-group > .active{
+    background-color: darkred;
+}
+.list-group > .active:hover{
+    background-color: red;
+}

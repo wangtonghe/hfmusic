@@ -77,3 +77,9 @@ a{
     margin-bottom: 2px;
 
 }
+.modal-margin{
+    margin-bottom: 10px;
+}
+.modal-margin .img{
+    margin-right: 10px;
+}

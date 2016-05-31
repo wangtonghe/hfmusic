@@ -73,7 +73,7 @@ function initData() {
         var list = data.data;
         var length = data.data.length;
         for (var i = 0; i < length; i++) {
-            var a_hot = '<a href="#" class="list-group-item">' + list[i].musicName + '<span class="badge">' + list[i].likeNum + '</span></a>';
+            var a_hot = '<a href="musicplayer.html?musicId='+list[i].musicId+'" class="list-group-item">' + list[i].musicName + '<span class="badge">' + list[i].likeNum + '</span></a>';
             $(".container .month-hot .list-group").append(a_hot);
         }
     }, "json");
@@ -83,7 +83,7 @@ function initData() {
         var list = data.data;
         var length = data.data.length;
         for (var i = 0; i < length; i++) {
-            var a_hot = '<a href="#" class="list-group-item">' + list[i].musicName + '<span class="badge">' + list[i].likeNum + '</span></a>';
+            var a_hot = '<a href="musicplayer.html?musicId='+list[i].musicId+'" class="list-group-item">' + list[i].musicName + '<span class="badge">' + list[i].likeNum + '</span></a>';
             $(".container .month-new .list-group").append(a_hot);
         }
     }, "json");
@@ -93,7 +93,7 @@ function initData() {
         var list = data.data;
         var length = data.data.length;
         for (var i = 0; i < length; i++) {
-            var a_hot = '<a href="#" class="list-group-item">' + list[i].singerName + '<span class="badge">' + list[i].hot + '</span></a>';
+            var a_hot = '<a href="singerdetails.html?singerId='+list[i].singerId+'" class="list-group-item">' + list[i].singerName + '<span class="badge">' + list[i].hot + '</span></a>';
             $(".container .hot-singer .list-group").append(a_hot);
         }
     }, "json");

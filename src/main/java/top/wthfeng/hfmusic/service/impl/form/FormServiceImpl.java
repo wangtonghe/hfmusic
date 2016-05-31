@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.wthfeng.hfmusic.dao.form.FormDAO;
 import top.wthfeng.hfmusic.dao.home.HomeDAO;
+import top.wthfeng.hfmusic.model.param.AddFormParam;
 import top.wthfeng.hfmusic.model.param.FormCollectParam;
-import top.wthfeng.hfmusic.model.view.ViewForm;
-import top.wthfeng.hfmusic.model.view.ViewFormDetails;
-import top.wthfeng.hfmusic.model.view.ViewPageList;
-import top.wthfeng.hfmusic.model.view.ViewSysLabel;
+import top.wthfeng.hfmusic.model.param.FormParam;
+import top.wthfeng.hfmusic.model.view.*;
 import top.wthfeng.hfmusic.service.form.FormService;
 import top.wthfeng.hfmusic.util.NumberUtil;
 
@@ -66,6 +65,23 @@ public class FormServiceImpl implements FormService {
         }else{
             formDAO.collect(param);
         }
+    }
+
+    @Override
+    public void create(FormParam param) throws Exception {
+        formDAO.create(param);
+        formDAO.insertLabels(param);
+    }
+
+    @Override
+    public List<ViewMyForm> getMyFormList(int userId) throws Exception {
+        return formDAO.listMyForm(userId);
+    }
+
+    @Override
+    public void addMyForm(AddFormParam param) throws Exception {
+        formDAO.addMyForm(param);
+
     }
 
     @Override

@@ -105,7 +105,7 @@ function initForm (){
         "title": form_type_title,
         "content":form_type_comtent,
         "placement": 'bottom',
-        "trigger":"click focus",
+        "trigger":"click focus"
     });
 
     initAllForm(labelid,1);

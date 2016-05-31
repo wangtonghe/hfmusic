@@ -3,15 +3,17 @@ package top.wthfeng.hfmusic.controller.form;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import top.wthfeng.hfmusic.model.param.AddFormParam;
 import top.wthfeng.hfmusic.model.param.FormCollectParam;
+import top.wthfeng.hfmusic.model.param.FormParam;
 import top.wthfeng.hfmusic.model.param.PageParam;
 import top.wthfeng.hfmusic.model.view.ViewError;
+import top.wthfeng.hfmusic.model.view.ViewFormDetails;
+import top.wthfeng.hfmusic.model.view.ViewMyForm;
 import top.wthfeng.hfmusic.service.form.FormService;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 歌单页面 controller
@@ -38,8 +40,14 @@ public class FormController {
         Map<String,Integer> param = new HashMap<>();
         param.put("formId",formId);
         param.put("userId",userId);
+        ViewFormDetails details = formService.getDetails(param);
+        if(!details.getMusicList().isEmpty()){
+            if(details.getMusicList().get(0).getMusicId()==0){
+                details.getMusicList().clear();
+            }
+        }
         result.put("code",0);
-        result.put("data",formService.getDetails(param));
+        result.put("data",details);
         return result;
 
     }
@@ -109,6 +117,60 @@ public class FormController {
         result.put("code",0);
         result.put("data",null);
         return result;
+    }
+
+    /**
+     * 创建歌单
+     * @return
+     */
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    public Map<String,Object> create(FormParam param,String formLabels)throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        List<Integer> labels= Arrays.asList(strs2ints(formLabels.split(",")));
+        param.setLabels(labels);
+        formService.create(param);
+        result.put("code",0);
+        result.put("data",null);
+        return result;
+
+    }
+
+
+    /**
+     * 获取我的歌单列表
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/listMyForm",method = RequestMethod.GET)
+    public Map<String, Object> getMyForm(int userId)throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        List<ViewMyForm> list=formService.getMyFormList(userId);
+        result.put("code",0);
+        result.put("data",list);
+        return result;
+    }
+
+    /**
+     * 添加歌曲到歌单
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/add2Form",method = RequestMethod.POST)
+    public Map<String,Object> addMyForm(AddFormParam param)throws Exception{
+        Map<String,Object> result = new HashMap<>();
+        formService.addMyForm(param);
+        result.put("code",0);
+        result.put("data",null);
+        return result;
+
+    }
+
+    private Integer [] strs2ints(String []strs){
+        Integer [] values=new Integer[strs.length];
+        for(int i=0;i<strs.length;i++){
+            values[i]=Integer.parseInt(strs[i]);
+        }
+        return values;
     }
 
 

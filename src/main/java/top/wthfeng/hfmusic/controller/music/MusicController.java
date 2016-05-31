@@ -37,6 +37,7 @@ public class MusicController {
 
     /**
      * 喜欢歌曲
+     * 歌曲标记为喜欢后，自动加入我喜欢的歌单
      * @param param
      * @return
      */

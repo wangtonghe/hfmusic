@@ -124,7 +124,7 @@ LEFT join music_like ml on m.id=ml.musicId and ml.userId=#{userId}
 
     <!--获取默认歌单id-->
     <select id="getDefaultFormId" parameterType="int" resultType="int">
-        select min(f.id) from form f where f.userId=#{userId}
+        select f.id from form f where f.userId=#{userId} and f.isdefault=1
     </select>
 
     <!--添加到默认歌单-->
@@ -141,5 +141,40 @@ LEFT join music_like ml on m.id=ml.musicId and ml.userId=#{userId}
         <bind name="nameLike" value="formName+'%' "/>
         where f.formName like #{nameLike}
     </select>
+
+    <!--从默认歌单中删除歌曲-->
+    <delete id="deleteDefaultForm" parameterType="top.wthfeng.hfmusic.model.param.MusicUserParam">
+        DELETE from form_details
+        where  formId=#{formId} and musicId=#{musicId}
+    </delete>
+
+    <!--创建歌单-->
+    <insert id="create" parameterType="top.wthfeng.hfmusic.model.param.FormParam">
+       <selectKey keyColumn="id" order="AFTER" resultType="java.lang.Integer" keyProperty="formId">
+           SELECT LAST_INSERT_ID()
+       </selectKey>
+        insert into form (userId,formName,info,createTime,cover,issystem,online)
+         values (#{userId},#{formName},#{info},#{createTime},#{cover},0,1)
+    </insert>
+
+    <!--插入歌单的标签-->
+    <insert id="insertLabels" parameterType="top.wthfeng.hfmusic.model.param.FormParam" >
+        insert into form_label (formId,labelId) values
+         <foreach collection="labels" item="item" separator=",">
+             (#{formId},#{item})
+         </foreach>
+    </insert>
+
+    <!--获取我的歌单-->
+    <select id="listMyForm" parameterType="int" resultType="top.wthfeng.hfmusic.model.view.ViewMyForm">
+        SELECT f.id formId,f.formName,f.createTime,f.cover from form f
+        where f.userId=#{userId}
+    </select>
+
+    <!--添加歌曲到歌单-->
+    <insert id="addMyForm" parameterType="top.wthfeng.hfmusic.model.param.AddFormParam" >
+        INSERT into form_details(formId,musicId)
+         VALUES(#{formId},#{musicId})
+    </insert>
 
 </mapper>

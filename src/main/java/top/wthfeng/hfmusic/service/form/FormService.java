@@ -1,10 +1,9 @@
 package top.wthfeng.hfmusic.service.form;
 
+import top.wthfeng.hfmusic.model.param.AddFormParam;
 import top.wthfeng.hfmusic.model.param.FormCollectParam;
-import top.wthfeng.hfmusic.model.view.ViewForm;
-import top.wthfeng.hfmusic.model.view.ViewFormDetails;
-import top.wthfeng.hfmusic.model.view.ViewPageList;
-import top.wthfeng.hfmusic.model.view.ViewSysLabel;
+import top.wthfeng.hfmusic.model.param.FormParam;
+import top.wthfeng.hfmusic.model.view.*;
 
 import java.util.List;
 import java.util.Map;
@@ -46,13 +45,35 @@ public interface FormService {
      * 收藏歌单
      * @param param
      */
-    void collect(FormCollectParam param);
+    void collect(FormCollectParam param)throws Exception;
 
     /**
      * 根据歌单名获取歌单
      * @return
      */
-    List<ViewForm> getByName(String key);
+    List<ViewForm> getByName(String key)throws Exception;
+
+    /**
+     * 创建歌单
+     * @param param
+     * @throws Exception
+     */
+    void create(FormParam param)throws Exception;
+
+    /**
+     * 获取我的歌单
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<ViewMyForm> getMyFormList(int userId)throws Exception;
+
+    /**
+     * 添加歌曲到歌单
+     * @param param
+     * @throws Exception
+     */
+    void addMyForm(AddFormParam param)throws Exception;
 
 
 

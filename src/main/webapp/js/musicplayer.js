@@ -84,6 +84,39 @@ $(function(){
         }
     });
 
+    $(".music-play-row .music-add").on("click", function () {  //添加歌曲到歌单 弹出
+
+        var userId=sessionStorage.getItem("hfmusic_userId");
+        if(userId==undefined||userId==''){
+            return;
+        }
+        $.get("/hfmusic/site/form/listMyForm",{userId:userId},function(data){
+            if(data.code==0){
+                var list=data.data;
+                $("#select_form .container").html("");
+                for(var i=0;i<list.length;i++){
+                    var row="<div class='row modal-margin'><img class='img-rounded'src='"+list[i].cover+"' width='40px' height='40px'" + " />" +
+                        "<a>"+list[i].formName+"</a><input type='hidden' value='"+list[i].formId+"'></div>";
+                    $("#select_form .container").append(row);
+                }
+                $("#select_form").modal();
+            }
+
+        });
+    });
+
+    $("#select_form .container").on("click","img,a",function(){
+        var formId= $(this).siblings("input").val();
+        var musicId=getParam("musicId");
+        $.post("/hfmusic/site/form/add2Form",{formId:formId,musicId:musicId},function(data){
+            if(data.code==0){
+                $("#select_form").modal("hide");
+                alert("添加成功！");
+            }
+        });
+    });
+
+
 });
 
 
