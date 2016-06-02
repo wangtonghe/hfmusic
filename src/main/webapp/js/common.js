@@ -49,7 +49,7 @@ $(function(){
             if (data.code == 0) {
                 var userinfo = data.data;
                 localStorage.setItem("hfmusic_accessToken",userinfo.accessToken);
-                alert($(".login-register .rememberMe").attr("checked"));
+                //alert($(".login-register .rememberMe").attr("checked"));
                 if($(".login-register .rememberMe").attr("checked")){
                     localStorage.setItem("hfmusic_rememberMe",$(".login-register #login_name").val());
                 }

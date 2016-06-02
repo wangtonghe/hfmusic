@@ -20,8 +20,8 @@ $(function(){
 
     var musicId=getParam("musicId");
     initDetails(musicId);
-    var t1 = window.setTimeout(getTotalTime,1000);
-  //  window.clearTimeout(t1);//去掉定时器
+    var t1 = window.setInterval(getTotalTime,1000);
+
     $(".margin-top-fill").on("click",".music-play",function(){  //播放歌曲
         var $audio= $("#music_audio");
         if( !$audio.hasClass("played")){

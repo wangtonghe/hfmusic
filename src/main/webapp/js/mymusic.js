@@ -24,7 +24,7 @@ $(function(){
             uploadUrl:rootUrl,
             language:"zh",
             uploadAsync: true,
-            allowedFileExtensions:['jpg',  'png', 'lrc','mp3','mp4'],
+            allowedFileExtensions:['jpg',  'png'],
             showPreview:true,
             showRemove:false
         }

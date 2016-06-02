@@ -138,8 +138,11 @@ LEFT join music_like ml on m.id=ml.musicId and ml.userId=#{userId}
         SELECT f.id formId,f.formName `name`,f.cover,u.nickName creator
         from form f
         left join  `user` u on  f.userId=u.id
+        left join form_details fd on fd.formId=f.id
+        left join music m on m.id=fd.musicId
         <bind name="nameLike" value="formName+'%' "/>
-        where f.formName like #{nameLike}
+        where f.formName like #{nameLike} or m.name like #{nameLike}
+        group by f.id
     </select>
 
     <!--从默认歌单中删除歌曲-->

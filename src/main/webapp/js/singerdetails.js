@@ -47,7 +47,7 @@ $(function(){
 
     $(".singer-cover").on("click",".singer-collect", function () {  //歌手收藏
         var singerId=getParam("singerId");
-       if($(this).hasClass("collected")){  //收藏
+       if($(this).find("span").hasClass("collected")){  //收藏
            $.post("/hfmusic/site/singer/collect",{singerId:singerId,flag:0}, function (data) {
                if(data.code==0){
                    $(".singer-collect").html("");
@@ -72,8 +72,8 @@ $(function(){
 
 function initDetails(){
     var singerId=getParam("singerId");
-    var accessToken=sessionStorage.getItem("hfmusic_accessToken");
-    $.get("/hfmusic/site/singer/getMusicTop50",{singerId:singerId},function(data){
+    var userId=sessionStorage.getItem("hfmusic_userId");
+    $.get("/hfmusic/site/singer/getMusicTop50",{singerId:singerId,userId:userId},function(data){
         if(data.code==0) {
             var details = data.data;
             $(".singer-name").text(details.singerName);

@@ -27,8 +27,11 @@
         SELECT m.id musicId,m.name musicName,m.singerId,m.album,s.name singerName
         from music m
         left join singer s on m.singerId=s.id
+        left join form_details fd on fd.musicId=m.id
+        left join form f on f.id=fd.formId
         <bind name="nameLike" value="musicName+'%'" />
-        where m.name like #{nameLike}
+        where m.name like #{nameLike} or s.name like #{nameLike} or f.formName like #{nameLike}
+        group by m.id
     </select>
 
 

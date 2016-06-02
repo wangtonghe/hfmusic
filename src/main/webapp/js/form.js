@@ -51,7 +51,7 @@ function initAllForm(labelId,pageNum){
                 $(".collection").html("");
                 for(var i=0;i< d.list.length;i++){
                     var row = "<div class=' col-lg-2 col-md-4 col-sm-4 ' ><input type='hidden'value='"+ d.list[i].formId+"' /><img  src='" + d.list[i].cover + "' class='img-rounded hand' width='140' height='140'>" +
-                        "<h6 class='home-formname'><a class='hand'>" + d.list[i].name +
+                        "<h6 class='home-formname'><a href='formdetails.html?formId="+d.list[i].formId+"'>" + d.list[i].name +
                         "</a></h6><span class='glyphicon glyphicon-heart '  >" + d.list[i].hot  +
                         "</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class='author'>"+ d.list[i].creator+"</span></div>";
                     $(".collection").append(row);

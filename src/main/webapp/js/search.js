@@ -73,7 +73,7 @@ $(function () {
                 $(".search-form").html("");
                 for(var i=0;i<list.length;i++){
                     var div = "<div class=' col-lg-3 col-md-3 col-sm-4 ' ><img  src='" + list[i].cover + "' class='img-rounded hand' width='140px' height='140px'>" +
-                        "<h6 class='home-formname'><a >" + list[i].name +
+                        "<h6 class='home-formname'><a href='formdetails.html?formId="+list[i].formId+"'>" + list[i].name +
                         "</a></h6>&nbsp;&nbsp;&nbsp;&nbsp;<span class='author'>"+list[i].creator+"</span><input type='hidden' value='"+list[i].formId+"' /></div>";
                     $(".search-form").append(div);
                 }

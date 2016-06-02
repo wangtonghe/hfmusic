@@ -81,13 +81,9 @@ public class SingerController {
      * @throws Exception
      */
     @RequestMapping(value = "/getMusicTop50",method = RequestMethod.GET)
-    public Map<String,Object> getMusicTop50(int singerId )throws Exception{
+    public Map<String,Object> getMusicTop50(int singerId,int userId )throws Exception{
         Map<String,Object> result = new HashMap<>();
         Map<String,Integer> param = new HashMap<>();
-        int userId=0;
-        if(UserContext.getUser()!=null){
-            userId=UserContext.getUser().getUserId();
-        }
         param.put("singerId",singerId);
         param.put("userId",userId);
         result.put("code",0);
