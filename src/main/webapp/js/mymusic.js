@@ -140,6 +140,9 @@ $(function(){
         $.post("/hfmusic/site/form/create",{formName:formname,cover:coverUrl,info:info,formLabels:f_labels,userId:userId}, function (data) {
             if(data.code==0){
                 alert("创建成功！");
+                $(".myul .my-form-li ").trigger("click");
+
+
             }
         });
     });

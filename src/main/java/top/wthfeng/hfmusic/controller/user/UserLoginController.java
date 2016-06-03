@@ -26,7 +26,7 @@ public class UserLoginController {
     @Resource
     private UserService userService;
 
-    private String DEFAULTPHOTO = "wthfeng.top/image/default.jpg";
+    private String DEFAULTPHOTO = "http://wthfeng.top/hfupload/photo/0c7aa282-26ab-45b8-aca2-5433477f121d.jpg";
     private Byte DEFAULTSTARNUM = 1;
 
     /**
@@ -91,6 +91,8 @@ public class UserLoginController {
             param.setStarNum(DEFAULTSTARNUM);
             param.setPassword(MD5Util.string2MD5(password));
             param.setUsername(username);
+            param.setNickName(username);
+
             int value =userService.register(param);
             if(value==-1) {
                 result.put("code", -1);

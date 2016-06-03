@@ -14,6 +14,7 @@ public class RegisterUserParam {
     private Date lastLoginTime;
     private String headPortrait;
     private Byte starNum;
+    private String nickName;
 
     public Integer getUserId() {
         return userId;
@@ -69,5 +70,13 @@ public class RegisterUserParam {
 
     public void setStarNum(Byte starNum) {
         this.starNum = starNum;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }
