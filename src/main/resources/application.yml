@@ -1,0 +1,4 @@
+server:
+    port: 25010
+    contentPath: /music
+    address: localhost

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wthfeng.hfmusic.dao.form.FormDAO">
+
+
+    <!--获取歌单详情-->
+    <resultMap id="getDetailsMap" type="com.wthfeng.hfmusic.model.view.ViewFormDetails">
+        <id column="formId" property="formId"/>
+        <result column="formName" property="formName"/>
+        <result column="info" property="info"/>
+        <result column="createTime" property="createTime"/>
+        <result column="creator" property="creator"/>
+        <result column="headPortrait" property="headPortrait"/>
+        <result column="cover" property="cover"/>
+        <result column="collectNum" property="collectNum"/>
+        <result column="isCollect" property="isCollect"/>
+        <result column="musicNum" property="musicNum"/>
+        <collection property="labels" ofType="com.wthfeng.hfmusic.model.form.FormLabel">
+            <id column="labelId" property="labelId"/>
+            <result column="labelName" property="labelName"/>
+        </collection>
+        <collection property="musicList" ofType="com.wthfeng.hfmusic.model.music.SimpleMusic">
+            <id property="musicId" column="musicId"/>
+            <result property="musicName" column="musicName"/>
+            <result property="singerId" column="singerId"/>
+            <result property="album" column="album"/>
+            <result property="singerName" column="singerName"/>
+            <result property="musicUrl" column="musicUrl"/>
+            <result property="isLike" column="isLike"/>
+        </collection>
+    </resultMap>
+
+    <!--获取歌单详情-->
+    <select id="getDetails" parameterType="java.util.Map"
+            resultMap="getDetailsMap">
+        SELECT f.id as formId,f.formName,f.info,
+        sl.id as labelId, sl.labelName labelName,f.createTime,u.headPortrait,f.cover,
+  u.nickName creator,m.id musicId,m.name musicName,s.name singerName,s.id singerId,
+  m.album,m.url musicUrl,
+ (select count(fc.id) from form_collect fc  where fc.formId=f.id) as  collectNum,
+ if(fc.id is null,0,1)as isCollect,
+ if(ml.id is null,0,1)as isLike
+ from form f
+  left join form_details fd on f.id=fd.formId
+  LEFT JOIN music m on fd.musicId=m.id
+  left join form_label fl on f.id=fl.formId
+ left join syslabel sl on sl.id=fl.labelId
+  left join user u on f.userId=u.id
+ left join singer s on m.singerId=s.id
+left join form_collect fc on f.id=fc.formId and fc.userId=#{userId}
+LEFT join music_like ml on m.id=ml.musicId and ml.userId=#{userId}
+ where f.id=#{formId}
+    </select>
+
+    <!--根据标签获取歌单-->
+    <select id="getFormByLabel" parameterType="java.util.Map" resultType="com.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT distinct f.id as formId,f.formName name,f.cover,u.nickName creator,
+        f.issystem as isSystem,
+        ((SELECT count(fc.id) FROM form_collect fc where fc.formId=f.id)+f.likenum)as hot
+        from form f
+        left JOIN `user` u on f.userId=u.id
+        left join form_label fl on f.id=fl.formId
+        left join syslabel sl on sl.id=fl.labelId
+        WHERE f.online=1
+        <if test="label!=null and label!=''">
+            <bind name="labelStr" value="'%'+label+'%' " />
+            and  sl.labelName like #{labelStr}
+        </if>
+        order by hot desc
+        limit #{offSet},#{pageSize}
+    </select>
+
+    <!--根据标签id获取歌单-->
+    <select id="getFormByLabelId" parameterType="java.util.Map" resultType="com.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT distinct f.id as formId,f.formName name,f.cover,u.nickName creator,
+        f.issystem as isSystem,
+        ((SELECT count(fc.id) FROM form_collect fc where fc.formId=f.id)+f.likenum)as hot
+        from form f
+        left JOIN `user` u on f.userId=u.id
+        left join form_label fl on f.id=fl.formId
+        WHERE f.online=1 and fl.labelId=#{labelId}
+        order by hot desc
+        limit #{offSet},#{pageSize}
+    </select>
+
+    <!--获取根据标签获取歌单总数-->
+    <select id="getFormByLabelNum" parameterType="java.lang.String" resultType="int">
+        select count(*) from (  SELECT f.id
+        from form f
+        left join form_label fl on f.id=fl.formId
+        left join syslabel sl on fl.labelId=sl.id
+        WHERE f.online=1
+        <if test="label!=null and label!=''">
+        <bind name="labelStr" value="'%'+label+'%' " />
+            and   sl.labelName like #{labelStr}
+        </if>
+        group by f.id) t
+    </select>
+
+    <!--获取根据标签id获取歌单总数-->
+    <select id="getFormByLabelIdNum" parameterType="int" resultType="int">
+        select count(*) from (  SELECT f.id
+        from form f
+        left join form_label fl on f.id=fl.formId
+        WHERE f.online=1
+            and   fl.labelId = #{labelId}
+        group by f.id) t
+    </select>
+
+    <!--获取系统标签-->
+    <select id="getSysLabel" resultType="com.wthfeng.hfmusic.model.view.ViewSysLabel">
+        select s.id labelId,s.labelName from syslabel s
+    </select>
+
+    <!--收藏歌单-->
+    <insert id="collect" parameterType="com.wthfeng.hfmusic.model.param.FormCollectParam">
+        INSERT INTO  form_collect(formId,userId,createTime) VALUES (#{formId},#{userId},#{createTime})
+    </insert>
+    <!--取消收藏歌单-->
+    <delete id="cancelCollect" parameterType="com.wthfeng.hfmusic.model.param.FormCollectParam">
+        delete from form_collect fc where fc.userId=#{userId} and fc.formId=#{formId}
+    </delete>
+
+    <!--获取默认歌单id-->
+    <select id="getDefaultFormId" parameterType="int" resultType="int">
+        select f.id from form f where f.userId=#{userId} and f.isdefault=1
+    </select>
+
+    <!--添加到默认歌单-->
+    <insert id="add2DefaultForm" parameterType="com.wthfeng.hfmusic.model.param.MusicUserParam">
+        insert into form_details(formId,musicId)
+         VALUES (#{formId},#{musicId})
+    </insert>
+
+    <!--根据名字获取歌单-->
+    <select id="getByName" parameterType="java.lang.String" resultType="com.wthfeng.hfmusic.model.view.ViewForm">
+        SELECT f.id formId,f.formName `name`,f.cover,u.nickName creator
+        from form f
+        left join  `user` u on  f.userId=u.id
+        left join form_details fd on fd.formId=f.id
+        left join music m on m.id=fd.musicId
+        <bind name="nameLike" value="formName+'%' "/>
+        where f.formName like #{nameLike} or m.name like #{nameLike}
+        group by f.id
+    </select>
+
+    <!--从默认歌单中删除歌曲-->
+    <delete id="deleteDefaultForm" parameterType="com.wthfeng.hfmusic.model.param.MusicUserParam">
+        DELETE from form_details
+        where  formId=#{formId} and musicId=#{musicId}
+    </delete>
+
+    <!--创建歌单-->
+    <insert id="create" parameterType="com.wthfeng.hfmusic.model.param.FormParam">
+       <selectKey keyColumn="id" order="AFTER" resultType="java.lang.Integer" keyProperty="formId">
+           SELECT LAST_INSERT_ID()
+       </selectKey>
+        insert into form (userId,formName,info,createTime,cover,issystem,online)
+         values (#{userId},#{formName},#{info},#{createTime},#{cover},0,1)
+    </insert>
+
+    <!--插入歌单的标签-->
+    <insert id="insertLabels" parameterType="com.wthfeng.hfmusic.model.param.FormParam" >
+        insert into form_label (formId,labelId) values
+         <foreach collection="labels" item="item" separator=",">
+             (#{formId},#{item})
+         </foreach>
+    </insert>
+
+    <!--获取我的歌单-->
+    <select id="listMyForm" parameterType="int" resultType="com.wthfeng.hfmusic.model.view.ViewMyForm">
+        SELECT f.id formId,f.formName,f.createTime,f.cover from form f
+        where f.userId=#{userId}
+    </select>
+
+    <!--添加歌曲到歌单-->
+    <insert id="addMyForm" parameterType="com.wthfeng.hfmusic.model.param.AddFormParam" >
+        INSERT into form_details(formId,musicId)
+         VALUES(#{formId},#{musicId})
+    </insert>
+
+</mapper>

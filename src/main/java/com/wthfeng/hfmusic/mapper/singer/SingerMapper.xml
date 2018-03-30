@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wthfeng.hfmusic.dao.singer.SingerDAO" >
+
+    <resultMap id="Top50MusicMap" type="com.wthfeng.hfmusic.model.view.ViewSingerMusic">
+        <result column="singerId" property="singerId" />
+        <result column="singerName" property="singerName" />
+        <result column="isCollect" property="isCollect" />
+        <result column="cover" property="cover"/>
+        <collection property="musics" ofType="com.wthfeng.hfmusic.model.music.SingerMusic">
+            <id column="musicId" property="musicId"/>
+            <result column="musicName" property="musicName"/>
+            <result column="album" property="album"/>
+            <result column="musicUrl" property="musicUrl"/>
+        </collection>
+    </resultMap>
+
+    <!--根据条件获取歌手-->
+    <select id="getSingerByArea" parameterType="com.wthfeng.hfmusic.model.param.SingerParam"
+       resultType="com.wthfeng.hfmusic.model.view.ViewSinger">
+        SELECT s.id as singerId,s.name as singerName,count(ml.musicId) as hot,s.portrait portrait
+        from singer s
+        left JOIN music m on s.id=m.singerId
+        left JOIN music_like ml on m.id=ml.musicId
+        WHERE s.active=1
+        <if test="area!=null">
+          and   s.area=#{area}
+        </if>
+        <if test="sex!=null">
+            and s.sex=#{sex}
+        </if>
+        GROUP BY s.id
+        ORDER BY hot desc
+        limit #{offSet},#{pageSize}
+    </select>
+
+    <!--根据地区获取歌手总数-->
+    <select id="getSingerByAreaNum" parameterType="com.wthfeng.hfmusic.model.param.SingerParam"
+            resultType="int">
+         SELECT COUNT(s.id)
+        from singer s
+        WHERE s.active=1
+        <if test="area!=null ">
+            and  s.area=#{area}
+        </if>
+        <if test="sex!=null">
+            and s.sex=#{sex}
+        </if>
+    </select>
+
+    <!--根据首字母查询歌手-->
+    <select id="getSingerByChar" parameterType="com.wthfeng.hfmusic.model.param.SingerParam"
+            resultType="com.wthfeng.hfmusic.model.view.ViewSinger">
+     select s.id as singerId,s.name as singerName,s.portrait portrait
+    from singer s , t_cosler c
+    where  CONV(HEX(left(CONVERT(s.`name` using gbk),1)),16,10) between c.cBegin and c.cEnd
+     and c.f_PY=#{character}
+     limit #{offSet},#{pageSize}
+    </select>
+
+    <!--根据首字母查询歌手数量-->
+    <select id="getSingerByCharNum" parameterType="com.wthfeng.hfmusic.model.param.SingerParam"
+            resultType="int">
+        select count(s.id)
+        from singer s , t_cosler c
+        where  CONV(HEX(left(CONVERT(s.`name` using gbk),1)),16,10) between c.cBegin and c.cEnd
+        and c.f_PY=#{character}
+    </select>
+
+    <select id="getSingerHot" parameterType="int" resultType="com.wthfeng.hfmusic.model.view.ViewSinger">
+          SELECT s.id as singerId,s.name as singerName,s.portrait portrait from singer s
+        left JOIN music m on s.id=m.singerId
+        left JOIN music_like ml on m.id=ml.musicId
+        GROUP BY s.id
+        ORDER BY count(ml.musicId) desc
+        limit 0,#{num}
+    </select>
+
+    <!--获取50首歌曲及歌手信息-->
+    <select id="getMusicTop50" parameterType="int" resultMap="Top50MusicMap">
+         SELECT m.id musicId,m.name musicName,m.album,m.url musicUrl,
+        s.id singerId,s.name singerName,s.portrait cover,
+        if(sc.id is null,0,1) as isCollect
+         from music m
+        left join singer s on s.id=m.singerId
+        left join singer_collect sc on s.id=sc.singerId and sc.userId=#{userId}
+        where m.singerId=#{singerId} and m.online=1
+        limit 0,50
+    </select>
+
+    <!--收藏歌手-->
+    <insert id="collect" parameterType="com.wthfeng.hfmusic.model.param.SingerCollectParam">
+        INSERT into singer_collect(singerId,userId,createTime)
+        VALUES (#{singerId},#{userId},#{createTime})
+    </insert>
+
+    <!--取消收藏歌手-->
+    <delete id="cancelCollect" parameterType="com.wthfeng.hfmusic.model.param.SingerCollectParam">
+        DELETE FROM singer_collect where singerId=#{singerId} and userId=#{userId}
+    </delete>
+
+    <!--根据名字获取歌手-->
+    <select id="getByName" parameterType="java.lang.String" resultType="com.wthfeng.hfmusic.model.view.ViewSinger">
+        select s.id singerId,s.name singerName,s.portrait portrait
+        from singer s
+        <bind name="nameLike" value="singerName+'%'"/>
+        where s.name like #{nameLike}
+    </select>
+
+
+
+</mapper>
